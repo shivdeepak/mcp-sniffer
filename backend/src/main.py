@@ -4,6 +4,7 @@ import sys
 
 import uvicorn
 from starlette.applications import Starlette
+from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import JSONResponse
 
 sys.path.append(os.path.dirname(__file__))
@@ -130,6 +131,15 @@ async def main():
 
 async def run_starlette_server():
     app = Starlette(debug=True)
+
+    # Add CORS middleware
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
     @app.route("/connections")
     async def connections(request):
