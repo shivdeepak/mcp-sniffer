@@ -6,6 +6,7 @@ import uvicorn
 from starlette.applications import Starlette
 from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import JSONResponse
+from starlette.staticfiles import StaticFiles
 
 sys.path.append(os.path.dirname(__file__))
 
@@ -145,9 +146,19 @@ async def run_starlette_server():
     @app.route("/connections")
     async def connections(request):
         return JSONResponse(
-            content=connection_manager.get_connections(),
+            content={
+                "source_ip": FRONTEND_HOST,
+                "source_port": FRONTEND_PORT,
+                "destination_ip": BACKEND_HOST,
+                "destination_port": BACKEND_PORT,
+                "version": "v0.1.0",
+                "connections": connection_manager.get_connections(),
+                "status": "ok",
+            },
             status_code=200,
         )
+
+    app.mount("/", StaticFiles(directory="frontend/dist", html=True))
 
     config = uvicorn.Config(
         app,
