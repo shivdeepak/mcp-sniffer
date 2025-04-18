@@ -12,10 +12,10 @@ sys.path.append(os.path.dirname(__file__))
 from connections import Connection, ConnectionManager, RequestParser, ResponseParser
 
 FRONTEND_HOST = "127.0.0.1"
-FRONTEND_PORT = 8080
+FRONTEND_PORT = 3001
 
 BACKEND_HOST = "127.0.0.1"
-BACKEND_PORT = 8000
+BACKEND_PORT = 3000
 
 connection_manager = ConnectionManager()
 
@@ -40,7 +40,6 @@ async def handle_client(client_reader, client_writer):
     connection_manager.add_connection(connection)
 
     method_type = None
-
     try:
         headers = []
         count = 0
@@ -80,7 +79,7 @@ async def handle_client(client_reader, client_writer):
                         await server_writer.drain()
 
                 if len(headers_dict) == 0:
-                    print("Closing empty connection")
+                    print(f"Closing empty connection from {addr}")
                     server_writer.close()
                     client_writer.close()
 
@@ -95,13 +94,15 @@ async def handle_client(client_reader, client_writer):
             client_writer.write(data)
             await client_writer.drain()
 
-            if not data.strip() and method_type == "POST":
-                print(f"Received empty line from {addr}")
+            if connection.response_parser.on_message_complete:
+                print(f"Received on_message_complete from {addr}")
+                try:
+                    client_writer.write_eof()
+                    await client_writer.drain()
+                except OSError:
+                    pass
                 break
 
-            if server_reader.at_eof():
-                print(f"Server {addr} closed connection")
-                break
     except (ConnectionResetError, BrokenPipeError) as e:
         print(f"Connection closed by {addr}: {e}")
         connection.close()
@@ -143,14 +144,17 @@ async def run_starlette_server():
 
     @app.route("/connections")
     async def connections(request):
-        print(connection_manager.get_connections())
         return JSONResponse(
             content=connection_manager.get_connections(),
             status_code=200,
         )
 
     config = uvicorn.Config(
-        app, host="0.0.0.0", port=8888, log_level="info", loop="asyncio"
+        app,
+        host="0.0.0.0",
+        port=8888,
+        log_level="info",
+        loop="asyncio",
     )
     server = uvicorn.Server(config)
     await server.serve()
