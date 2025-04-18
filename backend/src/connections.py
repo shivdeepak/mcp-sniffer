@@ -202,7 +202,7 @@ class ResponseParser:
         self.content_type = None
         self.content_type_params = {}
 
-        self.on_message_complete: bool = False
+        self.on_message_completed: bool = False
 
     def parse_response(self, data: bytes):
         if data.decode().strip() != "":
@@ -242,7 +242,7 @@ class ResponseParser:
             self.sse_messages[-1].parse_line(body.decode())
 
     def on_message_complete(self):
-        self.on_message_complete = True
+        self.on_message_completed = True
         print("on_message_complete")
 
     def on_chunk_header(self):

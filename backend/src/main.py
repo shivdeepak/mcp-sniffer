@@ -94,8 +94,8 @@ async def handle_client(client_reader, client_writer):
             client_writer.write(data)
             await client_writer.drain()
 
-            if connection.response_parser.on_message_complete:
-                print(f"Received on_message_complete from {addr}")
+            if connection.response_parser.on_message_completed:
+                print(f"Received on_message_completed from {addr}")
                 try:
                     client_writer.write_eof()
                     await client_writer.drain()
