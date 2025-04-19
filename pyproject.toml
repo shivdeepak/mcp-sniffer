@@ -2,6 +2,10 @@
 name = "mcp-sniffer"
 version = "0.1.0"
 description = "MCP Sniffer is a network traffic inspector for MCP clients and servers. It runs as a reverse proxy between the client and server, monitoring all communication between them."
+authors = [
+    {name = "Shiv Deepak",email = "shivdeepak@gmail.com"}
+]
+license = {text = "GPL-3.0-only"}
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -20,7 +24,6 @@ build-backend = "poetry.core.masonry.api"
 mcp-sniffer = "mcp_sniffer.__main__:main"
 
 [tool.poetry]
-
 include = [
     { path = "mcp_sniffer/frontend/**/*", format = "sdist" },
     { path = "mcp_sniffer/frontend/**/*", format = "wheel" }
