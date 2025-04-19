@@ -18,3 +18,10 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 mcp-sniffer = "mcp_sniffer.__main__:main"
+
+[tool.poetry]
+
+include = [
+    { path = "mcp_sniffer/frontend/**/*", format = "sdist" },
+    { path = "mcp_sniffer/frontend/**/*", format = "wheel" }
+]

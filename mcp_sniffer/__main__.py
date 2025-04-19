@@ -61,7 +61,10 @@ def parse_args() -> AppConfig:
 
 def main():
     config = parse_args()
-    asyncio.run(mcp_sniffer(config))
+    try:
+        asyncio.run(mcp_sniffer(config))
+    except KeyboardInterrupt:
+        pass
 
 
 if __name__ == "__main__":
