@@ -8,11 +8,9 @@ RUN pipx install poetry
 
 WORKDIR /app
 
-COPY frontend/dist /app/frontend/dist
+COPY . .
 
-COPY backend /app/backend
-
-RUN cd backend && uv sync
+RUN uv sync
 
 ENV WEB_UI_HOST=0.0.0.0
 ENV WEB_UI_PORT=8888
@@ -23,6 +21,6 @@ ENV LISTEN_PORT=3002
 ENV UPSTREAM_HOST=host.docker.internal
 ENV UPSTREAM_PORT=3001
 
-WORKDIR /app/backend
+ENV LOG_LEVEL=INFO
 
 ENTRYPOINT ["poetry", "run", "mcp-sniffer"]

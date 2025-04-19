@@ -42,7 +42,7 @@ async def run_webui(connection_manager, config):
             status_code=200,
         )
 
-    app.mount("/", StaticFiles(directory="../frontend/dist", html=True))
+    app.mount("/", StaticFiles(directory="frontend/dist", html=True))
 
     uvicorn_config = uvicorn.Config(
         app,
