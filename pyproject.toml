@@ -16,6 +16,10 @@ dependencies = [
     "uvicorn>=0.34.1",
 ]
 
+[project.urls]
+Source = "https://github.com/shivdeepak/mcp-sniffer"
+Tracker = "https://github.com/shivdeepak/mcp-sniffer/issues"
+
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
