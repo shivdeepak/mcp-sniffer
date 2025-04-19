@@ -7,6 +7,9 @@ MCP Sniffer is a network traffic inspector for MCP clients and servers. It runs 
 
 ![Flow Diagram](https://raw.githubusercontent.com/shivdeepak/mcp-sniffer/main/docs/images/flow-diag.png)
 
+![Browse Connections](https://raw.githubusercontent.com/shivdeepak/mcp-sniffer/main/docs/images/webui.png)
+
+
 ## Install
 
 ```shell
@@ -61,7 +64,5 @@ mcp-sniffer --listen-port 3002 --upstream-port 3001
 Visit [http://127.0.0.1:8888](http://127.0.0.1:8888).
 
 **Setup**
-![Web UI](https://raw.githubusercontent.com/shivdeepak/mcp-sniffer/main/docs/images/setup.png)
+![Setup](https://raw.githubusercontent.com/shivdeepak/mcp-sniffer/main/docs/images/setup.png)
 
-**Browse Connections**
-![Web UI](https://raw.githubusercontent.com/shivdeepak/mcp-sniffer/main/docs/images/setup.png)
