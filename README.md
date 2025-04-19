@@ -1,9 +1,13 @@
 # MCP Sniffer
 
+**MCP Sniffer** captures network traffic between MCP clients and servers.
+
+It runs as a reverse proxy between the client and server, capturing request and response payloads that can be visualized in a web UI.
+
 ![PyPI - License](https://img.shields.io/pypi/l/mcp-sniffer)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/mcp-sniffer)
 
-MCP Sniffer is a network traffic inspector for MCP clients and servers. It runs as a reverse proxy between the client and server, monitoring all communication between them.
+_Imagine [Google Chrome DevTools](https://developer.chrome.com/docs/devtools)' Network Tab for [Model Context Protocol](https://modelcontextprotocol.io/)_
 
 ![Flow Diagram](https://raw.githubusercontent.com/shivdeepak/mcp-sniffer/main/docs/images/flow-diag.png)
 
