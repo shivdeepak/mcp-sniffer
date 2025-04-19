@@ -5,6 +5,7 @@
 
 MCP Sniffer is a network traffic inspector for MCP clients and servers. It runs as a reverse proxy between the client and server, monitoring all communication between them.
 
+![Flow Diagram](https://raw.githubusercontent.com/shivdeepak/mcp-sniffer/main/docs/images/flow-diag.png)
 
 ## Install
 
