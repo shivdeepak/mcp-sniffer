@@ -12,11 +12,11 @@ sys.path.append(os.path.dirname(__file__))
 
 from connections import Connection, ConnectionManager, RequestParser, ResponseParser
 
-FRONTEND_HOST = "127.0.0.1"
-FRONTEND_PORT = 3002
+FRONTEND_HOST = os.getenv("LISTEN_HOST", "0.0.0.0")
+FRONTEND_PORT = os.getenv("LISTEN_PORT", "3002")
 
-BACKEND_HOST = "127.0.0.1"
-BACKEND_PORT = 3001
+BACKEND_HOST = os.getenv("UPSTREAM_HOST", "host.docker.internal")
+BACKEND_PORT = os.getenv("UPSTREAM_PORT", "3001")
 
 connection_manager = ConnectionManager()
 
@@ -29,8 +29,10 @@ async def handle_client(client_reader, client_writer):
         server_reader, server_writer = await asyncio.open_connection(
             BACKEND_HOST, BACKEND_PORT
         )
-    except ConnectionRefusedError as e:
-        print(f"Connection refused to {BACKEND_HOST}:{BACKEND_PORT}: {e}")
+    except (ConnectionRefusedError, OSError):
+        print(
+            f"Connection refused or failed with upstream server {BACKEND_HOST}:{BACKEND_PORT}"
+        )
         client_writer.close()
         return
 
@@ -40,7 +42,7 @@ async def handle_client(client_reader, client_writer):
         source_ip=addr[0],
         source_port=addr[1],
         destination_ip=BACKEND_HOST,
-        destination_port=BACKEND_PORT,
+        destination_port=int(BACKEND_PORT),
         request_parser=RequestParser(),
         response_parser=ResponseParser(),
     )
@@ -167,12 +169,12 @@ async def run_starlette_server():
             status_code=200,
         )
 
-    app.mount("/", StaticFiles(directory="frontend/dist", html=True))
+    app.mount("/", StaticFiles(directory="../frontend/dist", html=True))
 
     config = uvicorn.Config(
         app,
         host="0.0.0.0",
-        port=8888,
+        port=int(os.getenv("WEB_UI_PORT", "8888")),
         log_level="info",
         loop="asyncio",
     )
