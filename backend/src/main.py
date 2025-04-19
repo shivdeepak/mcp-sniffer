@@ -13,10 +13,10 @@ sys.path.append(os.path.dirname(__file__))
 from connections import Connection, ConnectionManager, RequestParser, ResponseParser
 
 FRONTEND_HOST = "127.0.0.1"
-FRONTEND_PORT = 3001
+FRONTEND_PORT = 3002
 
 BACKEND_HOST = "127.0.0.1"
-BACKEND_PORT = 3000
+BACKEND_PORT = 3001
 
 connection_manager = ConnectionManager()
 
@@ -25,9 +25,15 @@ async def handle_client(client_reader, client_writer):
     addr = client_writer.get_extra_info("peername")
     print(f"New connection from {addr}")
 
-    server_reader, server_writer = await asyncio.open_connection(
-        BACKEND_HOST, BACKEND_PORT
-    )
+    try:
+        server_reader, server_writer = await asyncio.open_connection(
+            BACKEND_HOST, BACKEND_PORT
+        )
+    except ConnectionRefusedError as e:
+        print(f"Connection refused to {BACKEND_HOST}:{BACKEND_PORT}: {e}")
+        client_writer.close()
+        return
+
     print(f"Connected to {BACKEND_HOST}:{BACKEND_PORT}")
 
     connection = Connection(
@@ -95,7 +101,10 @@ async def handle_client(client_reader, client_writer):
             client_writer.write(data)
             await client_writer.drain()
 
-            if connection.response_parser.on_message_completed:
+            if (
+                connection.response_parser.on_message_completed
+                or server_reader.at_eof()
+            ):
                 print(f"Received on_message_completed from {addr}")
                 try:
                     client_writer.write_eof()
