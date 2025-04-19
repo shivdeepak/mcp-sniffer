@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "httptools>=0.6.4",
+    "pydantic>=2.11.3",
     "starlette>=0.46.2",
     "uvicorn>=0.34.1",
 ]

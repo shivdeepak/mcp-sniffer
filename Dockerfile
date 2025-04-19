@@ -13,9 +13,12 @@ COPY backend /app/backend
 
 RUN cd backend && uv sync
 
+ENV WEB_UI_HOST=0.0.0.0
 ENV WEB_UI_PORT=8888
-ENV LISTEN_PORT=3002
+
 ENV LISTEN_HOST=0.0.0.0
+ENV LISTEN_PORT=3002
+
 ENV UPSTREAM_HOST=host.docker.internal
 ENV UPSTREAM_PORT=3001
 
