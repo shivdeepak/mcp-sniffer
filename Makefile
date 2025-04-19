@@ -15,7 +15,7 @@ build:
 	docker build -t $(IMAGE_NAME) .
 
 run:
-	docker run -it \
+	docker run -it --rm \
 		-p $(WEB_UI_PORT):$(WEB_UI_PORT) \
 		-p $(LISTEN_PORT):$(LISTEN_PORT) \
 		--network bridge \
