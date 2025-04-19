@@ -2,6 +2,8 @@ import asyncio
 import os
 import sys
 
+import coloredlogs
+
 sys.path.append(os.path.dirname(__file__))
 
 from connections import ConnectionManager
@@ -16,5 +18,7 @@ async def main():
         run_webui(connection_manager),
     )
 
+
+coloredlogs.install(level="DEBUG")
 
 asyncio.run(main())

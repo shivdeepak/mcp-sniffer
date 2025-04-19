@@ -1,4 +1,5 @@
 import asyncio
+import logging
 import os
 import sys
 from functools import partial
@@ -8,23 +9,27 @@ sys.path.append(os.path.dirname(__file__))
 from config import config
 from connections import Connection, RequestParser, ResponseParser
 
+logger = logging.getLogger(__name__)
+
 
 async def handle_client(client_reader, client_writer, connection_manager):
     addr = client_writer.get_extra_info("peername")
-    print(f"New connection from {addr}")
+    logger.info("New connection from %s", addr)
 
     try:
         server_reader, server_writer = await asyncio.open_connection(
             config.UPSTREAM_HOST, config.UPSTREAM_PORT
         )
     except (ConnectionRefusedError, OSError):
-        print(
-            f"Connection refused or failed with upstream server {config.UPSTREAM_HOST}:{config.UPSTREAM_PORT}"
+        logger.error(
+            "Connection refused or failed with upstream server %s:%s",
+            config.UPSTREAM_HOST,
+            config.UPSTREAM_PORT,
         )
         client_writer.close()
         return
 
-    print(f"Connected to {config.UPSTREAM_HOST}:{config.UPSTREAM_PORT}")
+    logger.info("Connected to %s:%s", config.UPSTREAM_HOST, config.UPSTREAM_PORT)
 
     connection = Connection(
         source_ip=addr[0],
@@ -71,22 +76,20 @@ async def handle_client(client_reader, client_writer, connection_manager):
                             int(headers_dict["content-length"])
                         )
                         connection.request_parser.parse_request(payload)
-                        # print(f"Received payload: {payload}")
                         server_writer.write(payload)
                         await server_writer.drain()
 
                 if len(headers_dict) == 0:
-                    print(f"Closing empty connection from {addr}")
+                    logger.info("Closing empty connection from %s", addr)
                     server_writer.close()
                     client_writer.close()
 
-                print(f"Received empty line from {method_type} {addr}")
+                logger.info("Received empty line from %s %s", method_type, addr)
                 break
 
         while True:
             data = await server_reader.readline()
             connection.response_parser.parse_response(data)
-            print(f"Received from server {addr}: {data}: {server_reader.at_eof()}")
 
             client_writer.write(data)
             await client_writer.drain()
@@ -95,7 +98,7 @@ async def handle_client(client_reader, client_writer, connection_manager):
                 connection.response_parser.on_message_completed
                 or server_reader.at_eof()
             ):
-                print(f"Received on_message_completed from {addr}")
+                logger.info("Received on_message_completed from %s", addr)
                 try:
                     client_writer.write_eof()
                     await client_writer.drain()
@@ -104,21 +107,21 @@ async def handle_client(client_reader, client_writer, connection_manager):
                 break
 
     except (ConnectionResetError, BrokenPipeError) as e:
-        print(f"Connection closed by {addr}: {e}")
+        logger.info("Connection closed by %s", addr, exc_info=e)
         connection.close()
         # break
 
     try:
         client_writer.close()
     except Exception as e:
-        print(f"Error closing connection: {e}")
+        logger.error("Error closing connection", exc_info=e)
     finally:
         connection.close()
 
     try:
         server_writer.close()
     except Exception as e:
-        print(f"Error closing connection: {e}")
+        logger.error("Error closing connection", exc_info=e)
     finally:
         connection.close()
 
@@ -130,7 +133,7 @@ async def run_proxy_server(connection_manager):
         config.LISTEN_PORT,
     )
     addr = server.sockets[0].getsockname()
-    print(f"Listening on {addr}...")
+    logger.info("Listening on %s...", addr)
 
     async with server:
         await server.serve_forever()

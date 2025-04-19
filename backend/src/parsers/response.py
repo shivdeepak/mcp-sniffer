@@ -1,3 +1,4 @@
+import logging
 import os
 import sys
 
@@ -8,6 +9,8 @@ sys.path.append(os.path.dirname(__file__))
 from parsers.base import BaseParser
 from parsers.chunk import Chunk
 from parsers.sse_message import SSEMessage
+
+logger = logging.getLogger(__name__)
 
 
 class ResponseParser(BaseParser):
@@ -36,17 +39,18 @@ class ResponseParser(BaseParser):
 
     def parse_response(self, data: bytes):
         if data.decode().strip() != "":
-            print("parse_response", data)
+            logger.debug("parse_response %s", data)
         self.raw_body.append(data.decode())
         self.parser.feed_data(data)
 
     def on_message_begin(self):
-        print("on_message_begin")
+        logger.debug("on_message_begin")
 
     def on_url(self, url: bytes):
-        print("on_url", url)
+        logger.debug("on_url %s", url)
 
     def on_header(self, name: bytes, value: bytes):
+        logger.debug("on_header %s %s", name, value)
         if name.decode().lower() == "content-type":
             mime, params = self.parse_content_type(value.decode())
             self.content_type = mime
@@ -55,11 +59,12 @@ class ResponseParser(BaseParser):
         self.headers[name.decode().lower()] = value.decode()
 
     def on_headers_complete(self):
+        logger.debug("on_headers_complete")
         if self.content_type == "text/event-stream":
             self.sse_messages.append(SSEMessage())
-        print("on_headers_complete")
 
     def on_body(self, body: bytes):
+        logger.debug("on_body %s", body)
         if self.headers.get("transfer-encoding") == "chunked":
             self.chunks[-1].data.append(body.decode())
         else:
@@ -72,18 +77,19 @@ class ResponseParser(BaseParser):
             self.sse_messages[-1].parse_line(body.decode())
 
     def on_message_complete(self):
+        logger.debug("on_message_complete")
         self.on_message_completed = True
-        print("on_message_complete")
 
     def on_chunk_header(self):
+        logger.debug("on_chunk_header")
         self.chunks.append(Chunk())
-        print("on_chunk_header")
 
     def on_chunk_complete(self):
+        logger.debug("on_chunk_complete")
         self.chunks[-1].end()
-        print("on_chunk_complete")
 
     def on_status(self, status: bytes):
+        logger.debug("on_status %s", status)
         self.status_message = status.decode()
         self.status_code = self.parser.get_status_code()
         self.http_version = self.parser.get_http_version()

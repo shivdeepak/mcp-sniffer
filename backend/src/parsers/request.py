@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 import sys
 
@@ -7,6 +8,8 @@ from httptools import HttpRequestParser  # type: ignore
 sys.path.append(os.path.dirname(__file__))
 
 from parsers.base import BaseParser
+
+logger = logging.getLogger(__name__)
 
 
 class RequestParser(BaseParser):
@@ -29,18 +32,20 @@ class RequestParser(BaseParser):
 
     def parse_request(self, data: bytes):
         if data.decode().strip() != "":
-            print("parse_response", data)
+            logger.debug("parse_request %s", data)
         self.raw_body.append(data.decode())
         self.parser.feed_data(data)
 
     def on_message_begin(self):
-        print("on_message_begin")
+        logger.debug("on_message_begin")
 
     def on_url(self, url: bytes):
+        logger.debug("on_url %s", url)
         self.method = self.parser.get_method().decode()
         self.path = url.decode()
 
     def on_header(self, name: bytes, value: bytes):
+        logger.debug("on_header %s %s", name, value)
         if name.decode().lower() == "content-type":
             mime, params = self.parse_content_type(value.decode())
             self.content_type = mime
@@ -48,22 +53,24 @@ class RequestParser(BaseParser):
         self.headers[name.decode().lower()] = value.decode()
 
     def on_headers_complete(self):
+        logger.debug("on_headers_complete")
         self.http_version = self.parser.get_http_version()
 
     def on_body(self, body: bytes):
+        logger.debug("on_body %s", body)
         self.body = body.decode()
 
     def on_message_complete(self):
-        print("on_message_complete")
+        logger.debug("on_message_complete")
 
     def on_chunk_header(self):
-        print("on_chunk_header")
+        logger.debug("on_chunk_header")
 
     def on_chunk_complete(self):
-        print("on_chunk_complete")
+        logger.debug("on_chunk_complete")
 
     def on_status(self, status: bytes):
-        print("on_status", status)
+        logger.debug("on_status %s", status)
 
     def as_dict(self):
         result = {

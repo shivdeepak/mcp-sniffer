@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "coloredlogs>=15.0.1",
     "httptools>=0.6.4",
     "pydantic>=2.11.3",
     "starlette>=0.46.2",
