@@ -1,8 +1,6 @@
 FROM python:3.13-slim-bookworm
 
 RUN apt update && apt install -y --no-install-recommends curl ca-certificates pipx
-ADD https://astral.sh/uv/install.sh /uv-installer.sh
-RUN sh /uv-installer.sh && rm /uv-installer.sh
 ENV PATH="/root/.local/bin/:$PATH"
 RUN pipx install poetry
 
@@ -10,7 +8,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN uv sync
+RUN poetry run sync
 
 ENV WEB_UI_HOST=0.0.0.0
 ENV WEB_UI_PORT=8888

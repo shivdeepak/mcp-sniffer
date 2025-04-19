@@ -1,0 +1,91 @@
+name: Create Release
+
+on:
+  workflow_run:
+    workflows: ["Test Suite"]
+    types:
+      - completed
+
+jobs:
+  check_version_change:
+    runs-on: ubuntu-latest
+    outputs:
+      version_changed: ${{ steps.check_version.outputs.version_changed }}
+      new_version: ${{ steps.check_version.outputs.new_version }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: "pip"
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install toml
+
+      - name: Extract Current and Previous Version
+        id: get_versions
+        run: |
+          CURRENT_VERSION=$(python -c 'import toml; print(toml.load("pyproject.toml")["project"]["version"])')
+          PREVIOUS_VERSION=$(git show HEAD~1:pyproject.toml | python -c 'import sys, toml; print(toml.load(sys.stdin)["project"]["version"])' || echo "")
+
+          echo "CURRENT_VERSION=$CURRENT_VERSION" >> $GITHUB_ENV
+          echo "PREVIOUS_VERSION=$PREVIOUS_VERSION" >> $GITHUB_ENV
+
+      - name: Check if Version Changed
+        id: check_version
+        run: |
+          if [ "$CURRENT_VERSION" != "$PREVIOUS_VERSION" ]; then
+            echo "version_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "version_changed=false" >> $GITHUB_OUTPUT
+          fi
+          echo "new_version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+
+  create-release:
+    needs: check_version_change
+    runs-on: ubuntu-latest
+    if: needs.check_version_change.outputs.version_changed == 'true'
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: "pip"
+
+      - name: Create Git Tag
+        run: |
+          git tag v${{ needs.check_version_change.outputs.new_version }}
+          git push origin v${{ needs.check_version_change.outputs.new_version }}
+
+      - name: Install Poetry
+        run: |
+          pipx install poetry
+          poetry install
+          poetry build
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ needs.check_version_change.outputs.new_version }}
+          name: "Release v${{ needs.check_version_change.outputs.new_version }}"
+          body: "Auto-generated release for version v${{ needs.check_version_change.outputs.new_version }}"
+          draft: false
+          prerelease: false
+          files: |
+            dist/*
+
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1

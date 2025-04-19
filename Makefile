@@ -12,6 +12,7 @@ UPSTREAM_PORT ?= 3001
 
 build:
 	cd frontend && npm run build
+	poetry build
 	docker build -t $(IMAGE_NAME) .
 
 run:

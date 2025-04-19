@@ -7,7 +7,7 @@ authors = [
 ]
 license = {text = "GPL-3.0-only"}
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.9"
 dependencies = [
     "coloredlogs>=15.0.1",
     "httptools>=0.6.4",
@@ -32,3 +32,7 @@ include = [
     { path = "mcp_sniffer/frontend/**/*", format = "sdist" },
     { path = "mcp_sniffer/frontend/**/*", format = "wheel" }
 ]
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
+pytest-cov = "^6.0.0"
