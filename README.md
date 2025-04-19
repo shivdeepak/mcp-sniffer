@@ -59,4 +59,8 @@ mcp-sniffer --listen-port 3002 --upstream-port 3001
 
 Visit [http://127.0.0.1:8888](http://127.0.0.1:8888).
 
+**Setup**
+![Web UI](docs/images/setup.png)
+
+**Browse Connections**
 ![Web UI](docs/images/webui.png)
