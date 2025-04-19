@@ -1,6 +1,7 @@
+import os
+
 import uvicorn
 from starlette.applications import Starlette
-from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import JSONResponse
 from starlette.staticfiles import StaticFiles
 
@@ -13,15 +14,6 @@ host_mapping = {
 
 async def run_webui(connection_manager, config):
     app = Starlette(debug=True)
-
-    # Add CORS middleware
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=["*"],
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
 
     @app.route("/connections")
     async def connections(request):
@@ -42,7 +34,13 @@ async def run_webui(connection_manager, config):
             status_code=200,
         )
 
-    app.mount("/", StaticFiles(directory="frontend/dist", html=True))
+    app.mount(
+        "/",
+        StaticFiles(
+            directory=os.path.join(os.path.dirname(__file__), "frontend"),
+            html=True,
+        ),
+    )
 
     uvicorn_config = uvicorn.Config(
         app,

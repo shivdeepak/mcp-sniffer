@@ -1,3 +1,5 @@
+mcp_sniffer/frontend/
+
 # Python-generated files
 __pycache__/
 *.py[oc]

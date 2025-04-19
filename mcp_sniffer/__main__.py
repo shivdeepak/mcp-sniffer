@@ -11,8 +11,8 @@ def parse_args() -> AppConfig:
 
     parser.add_argument(
         "--listen-host",
-        default=os.getenv("LISTEN_HOST", "0.0.0.0"),
-        help="Host to listen on (default: env LISTEN_HOST or 0.0.0.0)",
+        default=os.getenv("LISTEN_HOST", "127.0.0.1"),
+        help="Host to listen on (default: env LISTEN_HOST or 127.0.0.1)",
     )
     parser.add_argument(
         "--listen-port",
@@ -22,8 +22,8 @@ def parse_args() -> AppConfig:
     )
     parser.add_argument(
         "--upstream-host",
-        default=os.getenv("UPSTREAM_HOST", "host.docker.internal"),
-        help="Upstream host (default: env UPSTREAM_HOST or host.docker.internal)",
+        default=os.getenv("UPSTREAM_HOST", "127.0.0.1"),
+        help="Upstream host (default: env UPSTREAM_HOST or 127.0.0.1)",
     )
     parser.add_argument(
         "--upstream-port",
@@ -33,14 +33,19 @@ def parse_args() -> AppConfig:
     )
     parser.add_argument(
         "--web-ui-host",
-        default=os.getenv("WEB_UI_HOST", "0.0.0.0"),
-        help="Web UI host (default: env WEB_UI_HOST or 0.0.0.0)",
+        default=os.getenv("WEB_UI_HOST", "127.0.0.1"),
+        help="Web UI host (default: env WEB_UI_HOST or 127.0.0.1)",
     )
     parser.add_argument(
         "--web-ui-port",
         type=int,
         default=int(os.getenv("WEB_UI_PORT", "8888")),
         help="Web UI port (default: env WEB_UI_PORT or 8888)",
+    )
+    parser.add_argument(
+        "--log-level",
+        default=os.getenv("LOG_LEVEL", "INFO"),
+        help="Log level (default: env LOG_LEVEL or INFO)",
     )
 
     args = parser.parse_args()
