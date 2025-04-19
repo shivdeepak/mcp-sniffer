@@ -4,15 +4,18 @@
 
 It runs as a reverse proxy between the client and server, capturing request and response payloads that can be visualized in a web UI.
 
-![PyPI - License](https://img.shields.io/pypi/l/mcp-sniffer)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/mcp-sniffer)
-
-_Imagine [Google Chrome DevTools](https://developer.chrome.com/docs/devtools)' Network Tab for [Model Context Protocol](https://modelcontextprotocol.io/)_
+The following diagram shows how MCP Sniffer fits into the MCP Client-Server Model.
 
 ![Flow Diagram](https://raw.githubusercontent.com/shivdeepak/mcp-sniffer/main/docs/images/flow-diag.png)
 
+For the Web UI - Imagine [Google Chrome DevTools'](https://developer.chrome.com/docs/devtools) Network Tab for [Model Context Protocol](https://modelcontextprotocol.io/).
+
+Following is a very early version of it.
+
 ![Browse Connections](https://raw.githubusercontent.com/shivdeepak/mcp-sniffer/main/docs/images/webui.png)
 
+![PyPI - License](https://img.shields.io/pypi/l/mcp-sniffer)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/mcp-sniffer)
 
 ## Install
 
