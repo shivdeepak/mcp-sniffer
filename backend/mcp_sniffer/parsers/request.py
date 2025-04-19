@@ -1,13 +1,9 @@
 import json
 import logging
-import os
-import sys
 
 from httptools import HttpRequestParser  # type: ignore
 
-sys.path.append(os.path.dirname(__file__))
-
-from parsers.base import BaseParser
+from mcp_sniffer.parsers.base import BaseParser
 
 logger = logging.getLogger(__name__)
 

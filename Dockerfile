@@ -1,9 +1,10 @@
 FROM python:3.13-slim-bookworm
 
-RUN apt update && apt install -y --no-install-recommends curl ca-certificates
+RUN apt update && apt install -y --no-install-recommends curl ca-certificates pipx
 ADD https://astral.sh/uv/install.sh /uv-installer.sh
 RUN sh /uv-installer.sh && rm /uv-installer.sh
 ENV PATH="/root/.local/bin/:$PATH"
+RUN pipx install poetry
 
 WORKDIR /app
 
@@ -22,4 +23,6 @@ ENV LISTEN_PORT=3002
 ENV UPSTREAM_HOST=host.docker.internal
 ENV UPSTREAM_PORT=3001
 
-ENTRYPOINT ["uv", "--directory", "/app/backend", "run", "python", "src/main.py"]
+WORKDIR /app/backend
+
+ENTRYPOINT ["poetry", "run", "mcp-sniffer"]

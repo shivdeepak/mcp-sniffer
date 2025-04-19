@@ -1,7 +1,7 @@
 [project]
-name = "backend"
+name = "mcp-sniffer"
 version = "0.1.0"
-description = "Add your description here"
+description = "MCP Sniffer is a network traffic inspector for MCP clients and servers. It runs as a reverse proxy between the client and server, monitoring all communication between them."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -11,3 +11,10 @@ dependencies = [
     "starlette>=0.46.2",
     "uvicorn>=0.34.1",
 ]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+mcp-sniffer = "mcp_sniffer.__main__:main"

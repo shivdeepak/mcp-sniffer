@@ -1,14 +1,10 @@
 import logging
-import os
-import sys
 
 from httptools import HttpResponseParser  # type: ignore
 
-sys.path.append(os.path.dirname(__file__))
-
-from parsers.base import BaseParser
-from parsers.chunk import Chunk
-from parsers.sse_message import SSEMessage
+from mcp_sniffer.parsers.base import BaseParser
+from mcp_sniffer.parsers.chunk import Chunk
+from mcp_sniffer.parsers.sse_message import SSEMessage
 
 logger = logging.getLogger(__name__)
 

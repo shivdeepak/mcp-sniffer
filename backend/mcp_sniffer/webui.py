@@ -1,15 +1,8 @@
-import os
-import sys
-
 import uvicorn
 from starlette.applications import Starlette
 from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import JSONResponse
 from starlette.staticfiles import StaticFiles
-
-sys.path.append(os.path.dirname(__file__))
-
-from config import config
 
 host_mapping = {
     "127.0.0.1": "localhost",
@@ -18,7 +11,7 @@ host_mapping = {
 }
 
 
-async def run_webui(connection_manager):
+async def run_webui(connection_manager, config):
     app = Starlette(debug=True)
 
     # Add CORS middleware

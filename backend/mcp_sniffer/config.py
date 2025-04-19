@@ -13,5 +13,7 @@ class AppConfig(BaseModel):
     WEB_UI_HOST: str = os.getenv("WEB_UI_HOST", "0.0.0.0")
     WEB_UI_PORT: int = int(os.getenv("WEB_UI_PORT", "8888"))
 
+    LOG_LEVEL: str = os.getenv("LOG_LEVEL", "DEBUG")
+
 
 config = AppConfig()

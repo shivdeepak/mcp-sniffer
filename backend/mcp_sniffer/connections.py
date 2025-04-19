@@ -1,13 +1,9 @@
 import logging
-import os
-import sys
 from dataclasses import dataclass, field
 from datetime import datetime
 
-sys.path.append(os.path.dirname(__file__))
-
-from parsers.request import RequestParser
-from parsers.response import ResponseParser
+from mcp_sniffer.parsers.request import RequestParser
+from mcp_sniffer.parsers.response import ResponseParser
 
 logger = logging.getLogger(__name__)
 

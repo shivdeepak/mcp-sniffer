@@ -1,18 +1,15 @@
 import asyncio
 import logging
-import os
-import sys
 from functools import partial
 
-sys.path.append(os.path.dirname(__file__))
-
-from config import config
-from connections import Connection, RequestParser, ResponseParser
+from mcp_sniffer.connections import Connection
+from mcp_sniffer.parsers.request import RequestParser
+from mcp_sniffer.parsers.response import ResponseParser
 
 logger = logging.getLogger(__name__)
 
 
-async def handle_client(client_reader, client_writer, connection_manager):
+async def handle_client(client_reader, client_writer, connection_manager, config):
     addr = client_writer.get_extra_info("peername")
     logger.info("New connection from %s", addr)
 
@@ -126,9 +123,9 @@ async def handle_client(client_reader, client_writer, connection_manager):
         connection.close()
 
 
-async def run_proxy_server(connection_manager):
+async def run_proxy_server(connection_manager, config):
     server = await asyncio.start_server(
-        partial(handle_client, connection_manager=connection_manager),
+        partial(handle_client, connection_manager=connection_manager, config=config),
         config.LISTEN_HOST,
         config.LISTEN_PORT,
     )
