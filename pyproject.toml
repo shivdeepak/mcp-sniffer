@@ -1,6 +1,6 @@
 [project]
 name = "mcp-sniffer"
-version = "0.1.0"
+version = "0.1.1"
 description = "MCP Sniffer is a network traffic inspector for MCP clients and servers. It runs as a reverse proxy between the client and server, monitoring all communication between them."
 authors = [
     {name = "Shiv Deepak",email = "shivdeepak@gmail.com"}
