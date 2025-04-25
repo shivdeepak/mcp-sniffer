@@ -1,0 +1,6 @@
+HTTP/1.0 200 OK
+Server: SimpleHTTP/0.6 Python/3.13.2
+Date: Fri, 25 Apr 2025 14:24:41 GMT
+Content-type: text/html
+
+<h1>Hello, World!</h1>

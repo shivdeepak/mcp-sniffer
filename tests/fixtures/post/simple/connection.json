@@ -1,0 +1,51 @@
+{
+    "active": false,
+    "created_at": "2025-04-25T08:30:55.570374",
+    "ended_at": "2025-04-25T08:30:55.571195",
+    "source_ip": "127.0.0.1",
+    "source_port": 12345,
+    "destination_ip": "127.0.0.1",
+    "destination_port": 3001,
+    "request": {
+        "method": "POST",
+        "path": "/",
+        "http_version": "1.1",
+        "headers": {
+            "host": "localhost:8001",
+            "user-agent": "curl/8.7.1",
+            "accept": "*/*",
+            "content-length": "35",
+            "content-type": "application/x-www-form-urlencoded"
+        },
+        "raw_body": [
+            "POST / HTTP/1.1\r\n",
+            "Host: localhost:8001\r\n",
+            "User-Agent: curl/8.7.1\r\n",
+            "Accept: */*\r\n",
+            "Content-Length: 35\r\n",
+            "Content-Type: application/x-www-form-urlencoded\r\n",
+            "\r\n",
+            "username=testuser&password=testpass"
+        ],
+        "body": "username=testuser&password=testpass"
+    },
+    "response": {
+        "http_version": "1.0",
+        "status_code": 200,
+        "status_message": "OK",
+        "headers": {
+            "server": "SimpleHTTP/0.6 Python/3.13.2",
+            "date": "Fri, 25 Apr 2025 15:34:39 GMT",
+            "content-type": "text/html"
+        },
+        "raw_body": [
+            "HTTP/1.0 200 OK\r\n",
+            "Server: SimpleHTTP/0.6 Python/3.13.2\r\n",
+            "Date: Fri, 25 Apr 2025 15:34:39 GMT\r\n",
+            "Content-type: text/html\r\n",
+            "\r\n",
+            "\u003Ch1\u003EReceived POST data:\u003C/h1\u003E\u003Cpre\u003Eusername=testuser&password=testpass\u003C/pre\u003E"
+        ],
+        "body": "\u003Ch1\u003EReceived POST data:\u003C/h1\u003E\u003Cpre\u003Eusername=testuser&password=testpass\u003C/pre\u003E"
+    }
+}
