@@ -28,14 +28,13 @@ testcases = [
 @pytest.mark.asyncio
 @pytest.mark.parametrize("method, fixture", testcases)
 async def test_simple_get(method, fixture):
-    client_reader = MockStreamReader(f"tests/fixtures/{method}/{fixture}/request.txt")
+    fixture_path = f"tests/fixtures/{method.lower()}/{fixture}"
+    client_reader = MockStreamReader(f"{fixture_path}/request.txt")
     client_writer = MockStreamWriter()
     connection_manager = ConnectionManager()
     config = AppConfig(UPSTREAM_HOST="127.0.0.1", UPSTREAM_PORT=3001)
 
-    response_reader = MockStreamReader(
-        f"tests/fixtures/{method}/{fixture}/response.txt"
-    )
+    response_reader = MockStreamReader(f"{fixture_path}/response.txt")
     response_writer = MockStreamWriter()
 
     async def mock_open_connection(*args, **kwargs):
@@ -62,9 +61,7 @@ async def test_simple_get(method, fixture):
         ):
             assert actual == expected
 
-        expected_connection = json.load(
-            open(f"tests/fixtures/{method}/{fixture}/connection.json")
-        )
+        expected_connection = json.load(open(f"{fixture_path}/connection.json"))
 
         for key, value in expected_connection.items():
             if key not in ["created_at", "ended_at"]:
