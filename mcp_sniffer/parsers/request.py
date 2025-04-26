@@ -25,6 +25,7 @@ class RequestParser(BaseParser):
 
         self.content_type = None
         self.content_type_params = {}
+        self.on_headers_completed = False
 
     def parse_request(self, data: bytes):
         if data.decode().strip() != "":
@@ -51,6 +52,7 @@ class RequestParser(BaseParser):
     def on_headers_complete(self):
         logger.debug("on_headers_complete")
         self.http_version = self.parser.get_http_version()
+        self.on_headers_completed = True
 
     def on_body(self, body: bytes):
         logger.debug("on_body %s", body)

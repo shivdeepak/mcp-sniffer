@@ -11,15 +11,31 @@ from tests.utils.stream import MockStreamReader, MockStreamWriter
 
 logger = logging.getLogger(__name__)
 
+testcases = [
+    ["GET", "simple"],
+    ["POST", "simple"],
+    ["POST", "without_payload"],
+    ["PUT", "simple"],
+    ["PATCH", "simple"],
+    ["DELETE", "simple"],
+    ["DELETE", "with_payload"],
+    ["OPTIONS", "simple"],
+    ["OPTIONS", "with_payload"],
+    ["HEAD", "simple"],
+]
+
 
 @pytest.mark.asyncio
-async def test_simple_post():
-    client_reader = MockStreamReader("tests/fixtures/post/simple/request.txt")
+@pytest.mark.parametrize("method, fixture", testcases)
+async def test_simple_get(method, fixture):
+    client_reader = MockStreamReader(f"tests/fixtures/{method}/{fixture}/request.txt")
     client_writer = MockStreamWriter()
     connection_manager = ConnectionManager()
     config = AppConfig(UPSTREAM_HOST="127.0.0.1", UPSTREAM_PORT=3001)
 
-    response_reader = MockStreamReader("tests/fixtures/post/simple/response.txt")
+    response_reader = MockStreamReader(
+        f"tests/fixtures/{method}/{fixture}/response.txt"
+    )
     response_writer = MockStreamWriter()
 
     async def mock_open_connection(*args, **kwargs):
@@ -47,7 +63,7 @@ async def test_simple_post():
             assert actual == expected
 
         expected_connection = json.load(
-            open("tests/fixtures/post/simple/connection.json")
+            open(f"tests/fixtures/{method}/{fixture}/connection.json")
         )
 
         for key, value in expected_connection.items():

@@ -1,0 +1,50 @@
+{
+    "active": false,
+    "created_at": "2025-04-25T20:29:00.546009",
+    "ended_at": "2025-04-25T20:29:00.546882",
+    "source_ip": "127.0.0.1",
+    "source_port": 12345,
+    "destination_ip": "127.0.0.1",
+    "destination_port": 3001,
+    "request": {
+        "method": "PUT",
+        "path": "/",
+        "http_version": "1.1",
+        "headers": {
+            "host": "localhost:8001",
+            "user-agent": "curl/8.7.1",
+            "accept": "*/*",
+            "content-length": "35",
+            "content-type": "application/x-www-form-urlencoded"
+        },
+        "raw_body": [
+            "PUT / HTTP/1.1\r\n",
+            "Host: localhost:8001\r\n",
+            "User-Agent: curl/8.7.1\r\n",
+            "Accept: */*\r\n",
+            "Content-Length: 35\r\n",
+            "Content-Type: application/x-www-form-urlencoded\r\n",
+            "\r\n",
+            "username=testuser&password=testpass"
+        ]
+    },
+    "response": {
+        "http_version": "1.0",
+        "status_code": 200,
+        "status_message": "OK",
+        "headers": {
+            "server": "SimpleHTTP/0.6 Python/3.13.2",
+            "date": "Sat, 26 Apr 2025 03:29:00 GMT",
+            "content-type": "text/html"
+        },
+        "raw_body": [
+            "HTTP/1.0 200 OK\r\n",
+            "Server: SimpleHTTP/0.6 Python/3.13.2\r\n",
+            "Date: Sat, 26 Apr 2025 03:29:00 GMT\r\n",
+            "Content-type: text/html\r\n",
+            "\r\n",
+            "<h1>Received POST data:</h1><pre>username=testuser&password=testpass</pre>"
+        ],
+        "body": "<h1>Received POST data:</h1><pre>username=testuser&password=testpass</pre>"
+    }
+}
