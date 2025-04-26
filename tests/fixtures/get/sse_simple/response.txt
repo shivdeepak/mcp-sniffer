@@ -1,0 +1,11 @@
+HTTP/1.0 200 OK
+Server: SimpleHTTP/0.6 Python/3.13.2
+Date: Sat, 26 Apr 2025 04:34:41 GMT
+Content-type: text/event-stream
+
+data: Hello, World!
+
+data: Hello, World!
+
+data: Hello, World!
+

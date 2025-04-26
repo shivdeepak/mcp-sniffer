@@ -1,0 +1,23 @@
+HTTP/1.0 200 OK
+Server: SimpleHTTP/0.6 Python/3.13.2
+Date: Sat, 26 Apr 2025 04:30:54 GMT
+Content-type: text/event-stream
+Transfer-Encoding: chunked
+
+1b
+id: 1
+data: Hello, World!
+
+
+1b
+id: 2
+data: Hello, World!
+
+
+1b
+id: 3
+data: Hello, World!
+
+
+0
+

@@ -1,0 +1,73 @@
+{
+    "active": false,
+    "created_at": "2025-04-25T21:34:41.513137",
+    "ended_at": "2025-04-25T21:34:44.525863",
+    "source_ip": "127.0.0.1",
+    "source_port": 12345,
+    "destination_ip": "127.0.0.1",
+    "destination_port": 3001,
+    "request": {
+        "method": "GET",
+        "path": "/",
+        "http_version": "1.1",
+        "headers": {
+            "host": "localhost:8001",
+            "user-agent": "curl/8.7.1",
+            "accept": "*/*"
+        },
+        "raw_body": [
+            "GET / HTTP/1.1\r\n",
+            "Host: localhost:8001\r\n",
+            "User-Agent: curl/8.7.1\r\n",
+            "Accept: */*\r\n",
+            "\r\n"
+        ]
+    },
+    "response": {
+        "http_version": "1.0",
+        "status_code": 200,
+        "status_message": "OK",
+        "headers": {
+            "server": "SimpleHTTP/0.6 Python/3.13.2",
+            "date": "Sat, 26 Apr 2025 04:34:41 GMT",
+            "content-type": "text/event-stream"
+        },
+        "raw_body": [
+            "HTTP/1.0 200 OK\r\n",
+            "Server: SimpleHTTP/0.6 Python/3.13.2\r\n",
+            "Date: Sat, 26 Apr 2025 04:34:41 GMT\r\n",
+            "Content-type: text/event-stream\r\n",
+            "\r\n",
+            "data: Hello, World!\n",
+            "\n",
+            "data: Hello, World!\n",
+            "\n",
+            "data: Hello, World!\n",
+            "\n"
+        ],
+        "body": "\n",
+        "sse_messages": [
+            {
+                "start_time": "2025-04-25T21:34:41.514186",
+                "end_time": "2025-04-25T21:34:41.514216",
+                "data": [
+                    "Hello, World!"
+                ]
+            },
+            {
+                "start_time": "2025-04-25T21:34:42.519866",
+                "end_time": "2025-04-25T21:34:42.520048",
+                "data": [
+                    "Hello, World!"
+                ]
+            },
+            {
+                "start_time": "2025-04-25T21:34:43.523319",
+                "end_time": "2025-04-25T21:34:43.523761",
+                "data": [
+                    "Hello, World!"
+                ]
+            }
+        ]
+    }
+}

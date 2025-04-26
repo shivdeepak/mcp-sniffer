@@ -1,0 +1,122 @@
+{
+    "active": false,
+    "created_at": "2025-04-25T21:30:54.045801",
+    "ended_at": "2025-04-25T21:30:57.062766",
+    "source_ip": "127.0.0.1",
+    "source_port": 12345,
+    "destination_ip": "127.0.0.1",
+    "destination_port": 3001,
+    "request": {
+        "method": "GET",
+        "path": "/",
+        "http_version": "1.1",
+        "headers": {
+            "host": "localhost:8001",
+            "user-agent": "curl/8.7.1",
+            "accept": "*/*"
+        },
+        "raw_body": [
+            "GET / HTTP/1.1\r\n",
+            "Host: localhost:8001\r\n",
+            "User-Agent: curl/8.7.1\r\n",
+            "Accept: */*\r\n",
+            "\r\n"
+        ]
+    },
+    "response": {
+        "http_version": "1.0",
+        "status_code": 200,
+        "status_message": "OK",
+        "headers": {
+            "server": "SimpleHTTP/0.6 Python/3.13.2",
+            "date": "Sat, 26 Apr 2025 04:30:54 GMT",
+            "content-type": "text/event-stream",
+            "transfer-encoding": "chunked"
+        },
+        "raw_body": [
+            "HTTP/1.0 200 OK\r\n",
+            "Server: SimpleHTTP/0.6 Python/3.13.2\r\n",
+            "Date: Sat, 26 Apr 2025 04:30:54 GMT\r\n",
+            "Content-type: text/event-stream\r\n",
+            "Transfer-Encoding: chunked\r\n",
+            "\r\n",
+            "1b\r\n",
+            "id: 1\n",
+            "data: Hello, World!\n",
+            "\n",
+            "\r\n",
+            "1b\r\n",
+            "id: 2\n",
+            "data: Hello, World!\n",
+            "\n",
+            "\r\n",
+            "1b\r\n",
+            "id: 3\n",
+            "data: Hello, World!\n",
+            "\n",
+            "\r\n",
+            "0\r\n",
+            "\r\n"
+        ],
+        "chunks": [
+            {
+                "start_time": "2025-04-25T21:30:54.046803",
+                "end_time": "2025-04-25T21:30:54.046930",
+                "data": [
+                    "id: 1\n",
+                    "data: Hello, World!\n",
+                    "\n"
+                ]
+            },
+            {
+                "start_time": "2025-04-25T21:30:55.052056",
+                "end_time": "2025-04-25T21:30:55.052189",
+                "data": [
+                    "id: 2\n",
+                    "data: Hello, World!\n",
+                    "\n"
+                ]
+            },
+            {
+                "start_time": "2025-04-25T21:30:56.057440",
+                "end_time": "2025-04-25T21:30:56.057639",
+                "data": [
+                    "id: 3\n",
+                    "data: Hello, World!\n",
+                    "\n"
+                ]
+            },
+            {
+                "start_time": "2025-04-25T21:30:57.061237",
+                "end_time": "2025-04-25T21:30:57.061386",
+                "data": []
+            }
+        ],
+        "sse_messages": [
+            {
+                "start_time": "2025-04-25T21:30:54.046788",
+                "end_time": "2025-04-25T21:30:54.046908",
+                "data": [
+                    "Hello, World!"
+                ],
+                "id": "1"
+            },
+            {
+                "start_time": "2025-04-25T21:30:55.052129",
+                "end_time": "2025-04-25T21:30:55.052170",
+                "data": [
+                    "Hello, World!"
+                ],
+                "id": "2"
+            },
+            {
+                "start_time": "2025-04-25T21:30:56.057559",
+                "end_time": "2025-04-25T21:30:56.057618",
+                "data": [
+                    "Hello, World!"
+                ],
+                "id": "3"
+            }
+        ]
+    }
+}

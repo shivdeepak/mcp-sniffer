@@ -22,6 +22,9 @@ testcases = [
     ["OPTIONS", "simple"],
     ["OPTIONS", "with_payload"],
     ["HEAD", "simple"],
+    ["GET", "sse_simple"],
+    ["GET", "sse_chunked"],
+    ["GET", "sse_chunked_with_id"],
 ]
 
 
@@ -64,8 +67,31 @@ async def test_simple_get(method, fixture):
         expected_connection = json.load(open(f"{fixture_path}/connection.json"))
 
         for key, value in expected_connection.items():
-            if key not in ["created_at", "ended_at"]:
+            if key not in ["created_at", "ended_at", "response"]:
                 assert connections[0][key] == value
+
+        if "response" in expected_connection:
+            for key, value in expected_connection["response"].items():
+                if key not in ["sse_messages", "chunks"]:
+                    assert connections[0]["response"][key] == value
+
+            if "sse_messages" in expected_connection["response"]:
+                for actual, expected in zip(
+                    connections[0]["response"]["sse_messages"],
+                    expected_connection["response"]["sse_messages"],
+                ):
+                    for key, value in expected.items():
+                        if key not in ["start_time", "end_time"]:
+                            assert actual[key] == value
+
+            if "chunks" in expected_connection["response"]:
+                for actual, expected in zip(
+                    connections[0]["response"]["chunks"],
+                    expected_connection["response"]["chunks"],
+                ):
+                    for key, value in expected.items():
+                        if key not in ["start_time", "end_time"]:
+                            assert actual[key] == value
 
         assert len(client_writer.written_data) == len(response_reader.data_lines)
         for actual, expected in zip(
