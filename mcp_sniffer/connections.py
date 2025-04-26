@@ -1,6 +1,7 @@
 import logging
 from dataclasses import dataclass, field
 from datetime import datetime
+from typing import Union
 
 from mcp_sniffer.parsers.request import RequestParser
 from mcp_sniffer.parsers.response import ResponseParser
@@ -18,7 +19,7 @@ class Connection:
     request_parser: RequestParser = field(default_factory=RequestParser)
     response_parser: ResponseParser = field(default_factory=ResponseParser)
     active: bool = field(default=True)
-    ended_at: datetime | None = field(default=None)
+    ended_at: Union[datetime, None] = field(default=None)
 
     def close(self):
         if self.active:
