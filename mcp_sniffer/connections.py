@@ -26,6 +26,19 @@ class Connection:
             self.active = False
             self.ended_at = datetime.now()
 
+    def as_dict(self) -> dict:
+        return {
+            "active": self.active,
+            "created_at": self.created_at.isoformat(),
+            "ended_at": self.ended_at.isoformat() if self.ended_at else None,
+            "source_ip": self.source_ip,
+            "source_port": self.source_port,
+            "destination_ip": self.destination_ip,
+            "destination_port": self.destination_port,
+            "request": self.request_parser.as_dict(),
+            "response": self.response_parser.as_dict(),
+        }
+
 
 class ConnectionManager:
     def __init__(self):
@@ -35,22 +48,4 @@ class ConnectionManager:
         self.connections.append(connection)
 
     def get_connections(self) -> list[dict]:
-        _connections = []
-        for connection in self.connections:
-            _connections.append(
-                {
-                    "active": connection.active,
-                    "created_at": connection.created_at.isoformat(),
-                    "ended_at": connection.ended_at.isoformat()
-                    if connection.ended_at
-                    else None,
-                    "source_ip": connection.source_ip,
-                    "source_port": connection.source_port,
-                    "destination_ip": connection.destination_ip,
-                    "destination_port": connection.destination_port,
-                    "request": connection.request_parser.as_dict(),
-                    "response": connection.response_parser.as_dict(),
-                }
-            )
-
-        return _connections
+        return [connection.as_dict() for connection in self.connections]
