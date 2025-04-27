@@ -1,0 +1,53 @@
+{
+    "recommendations": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.debugpy",
+        "fabiospampinato.vscode-highlight",
+        "dbaeumer.vscode-eslint",
+        "charliermarsh.ruff"
+    ],
+    "highlight.regexes": {
+        "(\\r)": {
+            "decorations": [
+                {
+                    "color": "#FF0000",
+                    "after": {
+                        "contentText": "^M",
+                        "color": "#FF0000"
+                    }
+                }
+            ]
+        }
+    },
+    "editor.renderWhitespace": "all",
+    "editor.renderControlCharacters": true,
+    "[python]": {
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit",
+        },
+        "editor.defaultFormatter": "charliermarsh.ruff"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "always",
+        "source.organizeImports": "always"
+    },
+    "eslint.validate": [
+        "javascript",
+        "typescript",
+        "json"
+    ],
+    "eslint.workingDirectories": [
+        "./frontend"
+    ]
+}
