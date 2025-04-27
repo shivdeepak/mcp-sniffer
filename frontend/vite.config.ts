@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   build: {
-    outDir: "../mcp_sniffer/frontend",
+    outDir: '../mcp_sniffer/frontend',
     emptyOutDir: true,
   },
 })
