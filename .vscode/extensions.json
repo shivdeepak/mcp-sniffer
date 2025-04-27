@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.debugpy",
+        "fabiospampinato.vscode-highlight",
+        "dbaeumer.vscode-eslint",
+        "charliermarsh.ruff"
+    ]
+}
