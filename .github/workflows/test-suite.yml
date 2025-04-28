@@ -22,3 +22,30 @@ jobs:
           pipx install poetry
           poetry install
           poetry run pytest
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: "pip"
+
+      - name: Install Node.js and Lint Frontend
+        run: |
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
+          \. "$HOME/.nvm/nvm.sh"
+          nvm install 22
+          pushd frontend
+          npm install
+          npm run lint
+          popd
+
+      - name: Install Poetry and Lint Python
+        run: |
+          pipx install poetry
+          poetry install
+          poetry run ruff check .
+          poetry run ruff format --check .

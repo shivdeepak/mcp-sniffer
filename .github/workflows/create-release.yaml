@@ -65,11 +65,6 @@ jobs:
           python-version: "3.13"
           cache: "pip"
 
-      - name: Create Git Tag
-        run: |
-          git tag v${{ needs.check_version_change.outputs.new_version }}
-          git push origin v${{ needs.check_version_change.outputs.new_version }}
-
       - name: Install Node.js and Build Frontend
         run: |
           curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
@@ -85,6 +80,11 @@ jobs:
           pipx install poetry
           poetry install
           poetry build
+
+      - name: Create Git Tag
+        run: |
+          git tag v${{ needs.check_version_change.outputs.new_version }}
+          git push origin v${{ needs.check_version_change.outputs.new_version }}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
