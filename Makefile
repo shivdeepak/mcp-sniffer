@@ -9,21 +9,30 @@ LISTEN_PORT ?= 3002
 UPSTREAM_HOST ?= host.docker.internal
 UPSTREAM_PORT ?= 3001
 
+lint:
+	cd frontend && npm run lint
+	poetry run ruff check .
+	poetry run ruff format --check .
 
 build:
+	cd .devcontainer && docker compose build
+
+start:
+	cd .devcontainer && docker compose up -d
+
+stop:
+	cd .devcontainer && docker compose down
+
+clean:
+	cd .devcontainer && docker compose down
+	cd .devcontainer && docker compose rm -f
+
+prune:
+	docker system prune -a -f
+	docker image prune -a -f
+	docker volume prune -f
+	docker network prune -f
+
+release:
 	cd frontend && npm run build
 	poetry build
-	docker build -t $(IMAGE_NAME) .
-
-run:
-	docker run -it --rm \
-		-p $(WEB_UI_PORT):$(WEB_UI_PORT) \
-		-p $(LISTEN_PORT):$(LISTEN_PORT) \
-		--network bridge \
-		-e WEB_UI_HOST=$(WEB_UI_HOST) \
-		-e WEB_UI_PORT=$(WEB_UI_PORT) \
-		-e LISTEN_HOST=$(LISTEN_HOST) \
-		-e LISTEN_PORT=$(LISTEN_PORT) \
-		-e UPSTREAM_HOST=$(UPSTREAM_HOST) \
-		-e UPSTREAM_PORT=$(UPSTREAM_PORT) \
-		$(IMAGE_NAME)
