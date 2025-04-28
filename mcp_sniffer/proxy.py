@@ -6,7 +6,7 @@ from mcp_sniffer.connections import Connection
 from mcp_sniffer.parsers.request import RequestParser
 from mcp_sniffer.parsers.response import ResponseParser
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger(__package__)
 
 
 async def handle_client(client_reader, client_writer, connection_manager, config):

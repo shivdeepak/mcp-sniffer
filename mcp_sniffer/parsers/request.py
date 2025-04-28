@@ -5,7 +5,7 @@ from httptools import HttpRequestParser  # type: ignore
 
 from mcp_sniffer.parsers.base import BaseParser
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger(__package__)
 
 
 class RequestParser(BaseParser):

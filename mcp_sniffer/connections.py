@@ -6,7 +6,7 @@ from typing import Union
 from mcp_sniffer.parsers.request import RequestParser
 from mcp_sniffer.parsers.response import ResponseParser
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger(__package__)
 
 
 @dataclass

@@ -6,7 +6,7 @@ from mcp_sniffer.parsers.base import BaseParser
 from mcp_sniffer.parsers.chunk import Chunk
 from mcp_sniffer.parsers.sse_message import SSEMessage
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger(__package__)
 
 
 class ResponseParser(BaseParser):
