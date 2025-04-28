@@ -15,7 +15,7 @@ host_mapping = {
 async def run_webui(connection_manager, config):
     app = Starlette(debug=True)
 
-    @app.route("/connections")
+    @app.route("/api/connections")
     async def connections(request):
         return JSONResponse(
             content={

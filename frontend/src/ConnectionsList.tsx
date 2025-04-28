@@ -14,7 +14,7 @@ interface ConnectionsResponse {
 }
 
 const fetchConnections = async (): Promise<ConnectionsResponse> => {
-  const response = await axios.get('/connections')
+  const response = await axios.get('/api/connections')
   return response.data
 }
 
