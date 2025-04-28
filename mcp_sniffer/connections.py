@@ -1,3 +1,4 @@
+import asyncio
 import logging
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -11,6 +12,7 @@ logger = logging.getLogger(__package__)
 
 @dataclass
 class Connection:
+    id: int = field(default_factory=int)
     created_at: datetime = field(default_factory=datetime.now)
     source_ip: str = field(default_factory=str)
     source_port: int = field(default_factory=int)
@@ -40,12 +42,29 @@ class Connection:
         }
 
 
+class ConnectionCounter:
+    def __init__(self):
+        self.count = 0
+        self._lock = asyncio.Lock()
+
+    async def get(self):
+        async with self._lock:
+            self.count += 1
+            return self.count
+
+
 class ConnectionManager:
     def __init__(self):
+        self.counter = ConnectionCounter()
         self.connections: list[Connection] = []
 
     def add_connection(self, connection: Connection):
         self.connections.append(connection)
 
     def get_connections(self) -> list[dict]:
-        return [connection.as_dict() for connection in self.connections]
+        return [
+            connection.as_dict()
+            for connection in filter(
+                lambda x: x.request_parser.message_began, self.connections
+            )
+        ]

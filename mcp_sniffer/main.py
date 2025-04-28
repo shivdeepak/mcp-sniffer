@@ -13,7 +13,11 @@ logger = logging.getLogger(__package__)
 
 
 def configure_logger(config: AppConfig):
-    coloredlogs.install(level=config.LOG_LEVEL)
+    coloredlogs.install(
+        level=config.LOG_LEVEL,
+        fmt="%(asctime)s.%(msecs)03d %(levelname)s %(name)s[%(lineno)d]: %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
+    )
 
 
 async def mcp_sniffer(config: Optional[AppConfig] = None):
