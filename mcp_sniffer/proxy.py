@@ -50,10 +50,11 @@ async def handle_client(client_reader, client_writer, connection_manager, config
             data = await client_reader.readline()
             if data == b"":
                 break
-            connection.request_parser.parse_request(data)
 
             server_writer.write(data)
             await server_writer.drain()
+
+            connection.request_parser.parse_request(data)
 
             if connection.request_parser.on_headers_completed:
                 if not data.strip():
@@ -89,7 +90,6 @@ async def handle_client(client_reader, client_writer, connection_manager, config
             data = await server_reader.readline()
             if data == b"":
                 break
-            connection.response_parser.parse_response(data)
 
             client_writer.write(data)
             try:
@@ -98,6 +98,7 @@ async def handle_client(client_reader, client_writer, connection_manager, config
                 connection_logger.error("Connection closed by client")
                 server_writer.close()
                 break
+            connection.response_parser.parse_response(data)
 
     except (ConnectionResetError, BrokenPipeError) as e:
         connection_logger.info("Connection closed by client", exc_info=e)

@@ -1,0 +1,12 @@
+POST /message?sessionId=c7ec10e5-b153-4eea-a442-a7f87426b4ab HTTP/1.1
+host: localhost:3002
+connection: keep-alive
+Accept: text/event-stream
+content-type: application/json
+accept-language: *
+sec-fetch-mode: cors
+user-agent: node
+accept-encoding: gzip, deflate
+content-length: 205
+
+{"jsonrpc":"2.0","id":0,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{"sampling":{},"roots":{"listChanged":true}},"clientInfo":{"name":"mcp-inspector","version":"0.10.2"}}}

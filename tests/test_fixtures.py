@@ -12,26 +12,32 @@ from tests.utils.stream import MockStreamReader, MockStreamWriter
 logger = logging.getLogger(__name__)
 
 testcases = [
-    ["GET", "simple"],
-    ["POST", "simple"],
-    ["POST", "without_payload"],
-    ["PUT", "simple"],
-    ["PATCH", "simple"],
-    ["DELETE", "simple"],
-    ["DELETE", "with_payload"],
-    ["OPTIONS", "simple"],
-    ["OPTIONS", "with_payload"],
-    ["HEAD", "simple"],
-    ["GET", "sse_simple"],
-    ["GET", "sse_chunked"],
-    ["GET", "sse_chunked_with_id"],
+    ["get", "simple"],
+    ["post", "simple"],
+    ["post", "without_payload"],
+    ["put", "simple"],
+    ["patch", "simple"],
+    ["delete", "simple"],
+    ["delete", "with_payload"],
+    ["options", "simple"],
+    ["options", "with_payload"],
+    ["head", "simple"],
+    ["get", "sse_simple"],
+    ["get", "sse_chunked"],
+    ["get", "sse_chunked_with_id"],
+    ["empty", "both"],
+    ["mcp_http_sse", "0_main_sse_get_session"],
+    ["mcp_http_sse", "1_post_initialize"],
+    ["mcp_http_sse", "2_post_notify_initialized"],
+    ["mcp_http_sse", "3_post_tools_list"],
+    ["mcp_http_sse", "4_tools_call"],
 ]
 
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize("method, fixture", testcases)
 async def test_simple_get(method, fixture):
-    fixture_path = f"tests/fixtures/{method.lower()}/{fixture}"
+    fixture_path = f"tests/fixtures/{method}/{fixture}"
     client_reader = MockStreamReader(f"{fixture_path}/request.txt")
     client_writer = MockStreamWriter()
     connection_manager = ConnectionManager()
@@ -52,6 +58,10 @@ async def test_simple_get(method, fixture):
         )
 
         connections = connection_manager.get_connections()
+        if method == "empty":
+            assert len(connections) == 0
+            return
+
         assert len(connections) == 1
         assert connections[0]["source_ip"] == "127.0.0.1"
         assert connections[0]["source_port"] == 12345

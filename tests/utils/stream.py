@@ -12,6 +12,10 @@ class MockStreamReader:
         self.at_eof_flag = False
 
     async def readline(self):
+        if len(self.data_lines) == 0:
+            self.at_eof_flag = True
+            return b""
+
         if self.current_line == len(self.data_lines) - 1:
             self.at_eof_flag = True
         line = self.data_lines[self.current_line]

@@ -1,0 +1,11 @@
+GET /sse HTTP/1.1
+host: localhost:3002
+connection: keep-alive
+Accept: text/event-stream
+accept-language: *
+sec-fetch-mode: cors
+user-agent: node
+pragma: no-cache
+cache-control: no-cache
+accept-encoding: gzip, deflate
+

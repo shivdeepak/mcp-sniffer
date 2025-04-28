@@ -1,0 +1,364 @@
+{
+    "active": false,
+    "created_at": "2025-04-27T23:39:41.990240",
+    "ended_at": "2025-04-27T23:39:51.873829",
+    "source_ip": "127.0.0.1",
+    "source_port": 12345,
+    "destination_ip": "127.0.0.1",
+    "destination_port": 3001,
+    "request": {
+        "method": "GET",
+        "path": "/sse",
+        "http_version": "1.1",
+        "headers": {
+            "host": "localhost:3002",
+            "connection": "keep-alive",
+            "accept": "text/event-stream",
+            "accept-language": "*",
+            "sec-fetch-mode": "cors",
+            "user-agent": "node",
+            "pragma": "no-cache",
+            "cache-control": "no-cache",
+            "accept-encoding": "gzip, deflate"
+        },
+        "raw_body": [
+            "GET /sse HTTP/1.1\r\n",
+            "host: localhost:3002\r\n",
+            "connection: keep-alive\r\n",
+            "Accept: text/event-stream\r\n",
+            "accept-language: *\r\n",
+            "sec-fetch-mode: cors\r\n",
+            "user-agent: node\r\n",
+            "pragma: no-cache\r\n",
+            "cache-control: no-cache\r\n",
+            "accept-encoding: gzip, deflate\r\n",
+            "\r\n"
+        ]
+    },
+    "response": {
+        "http_version": "1.1",
+        "status_code": 200,
+        "status_message": "OK",
+        "headers": {
+            "x-powered-by": "Express",
+            "content-type": "text/event-stream",
+            "cache-control": "no-cache, no-transform",
+            "connection": "keep-alive",
+            "date": "Mon, 28 Apr 2025 06:39:42 GMT",
+            "transfer-encoding": "chunked"
+        },
+        "raw_body": [
+            "HTTP/1.1 200 OK\r\n",
+            "X-Powered-By: Express\r\n",
+            "Content-Type: text/event-stream\r\n",
+            "Cache-Control: no-cache, no-transform\r\n",
+            "Connection: keep-alive\r\n",
+            "Date: Mon, 28 Apr 2025 06:39:42 GMT\r\n",
+            "Transfer-Encoding: chunked\r\n",
+            "\r\n",
+            "4f\r\n",
+            "event: endpoint\n",
+            "data: /message?sessionId=c7ec10e5-b153-4eea-a442-a7f87426b4ab\n",
+            "\n",
+            "\r\n",
+            "104\r\n",
+            "event: message\n",
+            "data: {\"result\":{\"protocolVersion\":\"2024-11-05\",\"capabilities\":{\"prompts\":{},\"resources\":{\"subscribe\":true},\"tools\":{},\"logging\":{},\"completions\":{}},\"serverInfo\":{\"name\":\"example-servers/everything\",\"version\":\"1.0.0\"}},\"jsonrpc\":\"2.0\",\"id\":0}\n",
+            "\n",
+            "\r\n",
+            "81\r\n",
+            "event: message\n",
+            "data: {\"method\":\"notifications/message\",\"params\":{\"level\":\"alert\",\"data\":\"Alert level-message\"},\"jsonrpc\":\"2.0\"}\n",
+            "\n",
+            "\r\n",
+            "aeb\r\n",
+            "event: message\n",
+            "data: {\"result\":{\"tools\":[{\"name\":\"echo\",\"description\":\"Echoes back the input\",\"inputSchema\":{\"type\":\"object\",\"properties\":{\"message\":{\"type\":\"string\",\"description\":\"Message to echo\"}},\"required\":[\"message\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}},{\"name\":\"add\",\"description\":\"Adds two numbers\",\"inputSchema\":{\"type\":\"object\",\"properties\":{\"a\":{\"type\":\"number\",\"description\":\"First number\"},\"b\":{\"type\":\"number\",\"description\":\"Second number\"}},\"required\":[\"a\",\"b\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}},{\"name\":\"printEnv\",\"description\":\"Prints all environment variables, helpful for debugging MCP server configuration\",\"inputSchema\":{\"type\":\"object\",\"properties\":{},\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}},{\"name\":\"longRunningOperation\",\"description\":\"Demonstrates a long running operation with progress updates\",\"inputSchema\":{\"type\":\"object\",\"properties\":{\"duration\":{\"type\":\"number\",\"default\":10,\"description\":\"Duration of the operation in seconds\"},\"steps\":{\"type\":\"number\",\"default\":5,\"description\":\"Number of steps in the operation\"}},\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}},{\"name\":\"sampleLLM\",\"description\":\"Samples from an LLM using MCP's sampling feature\",\"inputSchema\":{\"type\":\"object\",\"properties\":{\"prompt\":{\"type\":\"string\",\"description\":\"The prompt to send to the LLM\"},\"maxTokens\":{\"type\":\"number\",\"default\":100,\"description\":\"Maximum number of tokens to generate\"}},\"required\":[\"prompt\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}},{\"name\":\"getTinyImage\",\"description\":\"Returns the MCP_TINY_IMAGE\",\"inputSchema\":{\"type\":\"object\",\"properties\":{},\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}},{\"name\":\"annotatedMessage\",\"description\":\"Demonstrates how annotations can be used to provide metadata about content\",\"inputSchema\":{\"type\":\"object\",\"properties\":{\"messageType\":{\"type\":\"string\",\"enum\":[\"error\",\"success\",\"debug\"],\"description\":\"Type of message to demonstrate different annotation patterns\"},\"includeImage\":{\"type\":\"boolean\",\"default\":false,\"description\":\"Whether to include an example image\"}},\"required\":[\"messageType\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}},{\"name\":\"getResourceReference\",\"description\":\"Returns a resource reference that can be used by MCP clients\",\"inputSchema\":{\"type\":\"object\",\"properties\":{\"resourceId\":{\"type\":\"number\",\"minimum\":1,\"maximum\":100,\"description\":\"ID of the resource to reference (1-100)\"}},\"required\":[\"resourceId\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}}]},\"jsonrpc\":\"2.0\",\"id\":1}\n",
+            "\n",
+            "\r\n",
+            "6b\r\n",
+            "event: message\n",
+            "data: {\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"Echo: Hello\"}]},\"jsonrpc\":\"2.0\",\"id\":2}\n",
+            "\n",
+            "\r\n"
+        ],
+        "chunks": [
+            {
+                "start_time": "2025-04-27T23:39:42.004653",
+                "end_time": "2025-04-27T23:39:42.004878",
+                "data": [
+                    "event: endpoint\n",
+                    "data: /message?sessionId=c7ec10e5-b153-4eea-a442-a7f87426b4ab\n",
+                    "\n"
+                ]
+            },
+            {
+                "start_time": "2025-04-27T23:39:42.053483",
+                "end_time": "2025-04-27T23:39:42.053637",
+                "data": [
+                    "event: message\n",
+                    "data: {\"result\":{\"protocolVersion\":\"2024-11-05\",\"capabilities\":{\"prompts\":{},\"resources\":{\"subscribe\":true},\"tools\":{},\"logging\":{},\"completions\":{}},\"serverInfo\":{\"name\":\"example-servers/everything\",\"version\":\"1.0.0\"}},\"jsonrpc\":\"2.0\",\"id\":0}\n",
+                    "\n"
+                ]
+            },
+            {
+                "start_time": "2025-04-27T23:39:43.553730",
+                "end_time": "2025-04-27T23:39:43.555037",
+                "data": [
+                    "event: message\n",
+                    "data: {\"method\":\"notifications/message\",\"params\":{\"level\":\"alert\",\"data\":\"Alert level-message\"},\"jsonrpc\":\"2.0\"}\n",
+                    "\n"
+                ]
+            },
+            {
+                "start_time": "2025-04-27T23:39:44.778759",
+                "end_time": "2025-04-27T23:39:44.779428",
+                "data": [
+                    "event: message\n",
+                    "data: {\"result\":{\"tools\":[{\"name\":\"echo\",\"description\":\"Echoes back the input\",\"inputSchema\":{\"type\":\"object\",\"properties\":{\"message\":{\"type\":\"string\",\"description\":\"Message to echo\"}},\"required\":[\"message\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}},{\"name\":\"add\",\"description\":\"Adds two numbers\",\"inputSchema\":{\"type\":\"object\",\"properties\":{\"a\":{\"type\":\"number\",\"description\":\"First number\"},\"b\":{\"type\":\"number\",\"description\":\"Second number\"}},\"required\":[\"a\",\"b\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}},{\"name\":\"printEnv\",\"description\":\"Prints all environment variables, helpful for debugging MCP server configuration\",\"inputSchema\":{\"type\":\"object\",\"properties\":{},\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}},{\"name\":\"longRunningOperation\",\"description\":\"Demonstrates a long running operation with progress updates\",\"inputSchema\":{\"type\":\"object\",\"properties\":{\"duration\":{\"type\":\"number\",\"default\":10,\"description\":\"Duration of the operation in seconds\"},\"steps\":{\"type\":\"number\",\"default\":5,\"description\":\"Number of steps in the operation\"}},\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}},{\"name\":\"sampleLLM\",\"description\":\"Samples from an LLM using MCP's sampling feature\",\"inputSchema\":{\"type\":\"object\",\"properties\":{\"prompt\":{\"type\":\"string\",\"description\":\"The prompt to send to the LLM\"},\"maxTokens\":{\"type\":\"number\",\"default\":100,\"description\":\"Maximum number of tokens to generate\"}},\"required\":[\"prompt\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}},{\"name\":\"getTinyImage\",\"description\":\"Returns the MCP_TINY_IMAGE\",\"inputSchema\":{\"type\":\"object\",\"properties\":{},\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}},{\"name\":\"annotatedMessage\",\"description\":\"Demonstrates how annotations can be used to provide metadata about content\",\"inputSchema\":{\"type\":\"object\",\"properties\":{\"messageType\":{\"type\":\"string\",\"enum\":[\"error\",\"success\",\"debug\"],\"description\":\"Type of message to demonstrate different annotation patterns\"},\"includeImage\":{\"type\":\"boolean\",\"default\":false,\"description\":\"Whether to include an example image\"}},\"required\":[\"messageType\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}},{\"name\":\"getResourceReference\",\"description\":\"Returns a resource reference that can be used by MCP clients\",\"inputSchema\":{\"type\":\"object\",\"properties\":{\"resourceId\":{\"type\":\"number\",\"minimum\":1,\"maximum\":100,\"description\":\"ID of the resource to reference (1-100)\"}},\"required\":[\"resourceId\"],\"additionalProperties\":false,\"$schema\":\"http://json-schema.org/draft-07/schema#\"}}]},\"jsonrpc\":\"2.0\",\"id\":1}\n",
+                    "\n"
+                ]
+            },
+            {
+                "start_time": "2025-04-27T23:39:49.121277",
+                "end_time": "2025-04-27T23:39:49.121403",
+                "data": [
+                    "event: message\n",
+                    "data: {\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"Echo: Hello\"}]},\"jsonrpc\":\"2.0\",\"id\":2}\n",
+                    "\n"
+                ]
+            }
+        ],
+        "sse_messages": [
+            {
+                "start_time": "2025-04-27T23:39:42.004580",
+                "end_time": "2025-04-27T23:39:42.004829",
+                "data": [
+                    "/message?sessionId=c7ec10e5-b153-4eea-a442-a7f87426b4ab"
+                ],
+                "event": "endpoint"
+            },
+            {
+                "start_time": "2025-04-27T23:39:42.053536",
+                "end_time": "2025-04-27T23:39:42.053616",
+                "data": {
+                    "result": {
+                        "protocolVersion": "2024-11-05",
+                        "capabilities": {
+                            "prompts": {},
+                            "resources": {
+                                "subscribe": true
+                            },
+                            "tools": {},
+                            "logging": {},
+                            "completions": {}
+                        },
+                        "serverInfo": {
+                            "name": "example-servers/everything",
+                            "version": "1.0.0"
+                        }
+                    },
+                    "jsonrpc": "2.0",
+                    "id": 0
+                },
+                "event": "message"
+            },
+            {
+                "start_time": "2025-04-27T23:39:43.554083",
+                "end_time": "2025-04-27T23:39:43.554831",
+                "data": {
+                    "method": "notifications/message",
+                    "params": {
+                        "level": "alert",
+                        "data": "Alert level-message"
+                    },
+                    "jsonrpc": "2.0"
+                },
+                "event": "message"
+            },
+            {
+                "start_time": "2025-04-27T23:39:44.778883",
+                "end_time": "2025-04-27T23:39:44.779359",
+                "data": {
+                    "result": {
+                        "tools": [
+                            {
+                                "name": "echo",
+                                "description": "Echoes back the input",
+                                "inputSchema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Message to echo"
+                                        }
+                                    },
+                                    "required": [
+                                        "message"
+                                    ],
+                                    "additionalProperties": false,
+                                    "$schema": "http://json-schema.org/draft-07/schema#"
+                                }
+                            },
+                            {
+                                "name": "add",
+                                "description": "Adds two numbers",
+                                "inputSchema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "a": {
+                                            "type": "number",
+                                            "description": "First number"
+                                        },
+                                        "b": {
+                                            "type": "number",
+                                            "description": "Second number"
+                                        }
+                                    },
+                                    "required": [
+                                        "a",
+                                        "b"
+                                    ],
+                                    "additionalProperties": false,
+                                    "$schema": "http://json-schema.org/draft-07/schema#"
+                                }
+                            },
+                            {
+                                "name": "printEnv",
+                                "description": "Prints all environment variables, helpful for debugging MCP server configuration",
+                                "inputSchema": {
+                                    "type": "object",
+                                    "properties": {},
+                                    "additionalProperties": false,
+                                    "$schema": "http://json-schema.org/draft-07/schema#"
+                                }
+                            },
+                            {
+                                "name": "longRunningOperation",
+                                "description": "Demonstrates a long running operation with progress updates",
+                                "inputSchema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "duration": {
+                                            "type": "number",
+                                            "default": 10,
+                                            "description": "Duration of the operation in seconds"
+                                        },
+                                        "steps": {
+                                            "type": "number",
+                                            "default": 5,
+                                            "description": "Number of steps in the operation"
+                                        }
+                                    },
+                                    "additionalProperties": false,
+                                    "$schema": "http://json-schema.org/draft-07/schema#"
+                                }
+                            },
+                            {
+                                "name": "sampleLLM",
+                                "description": "Samples from an LLM using MCP's sampling feature",
+                                "inputSchema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "prompt": {
+                                            "type": "string",
+                                            "description": "The prompt to send to the LLM"
+                                        },
+                                        "maxTokens": {
+                                            "type": "number",
+                                            "default": 100,
+                                            "description": "Maximum number of tokens to generate"
+                                        }
+                                    },
+                                    "required": [
+                                        "prompt"
+                                    ],
+                                    "additionalProperties": false,
+                                    "$schema": "http://json-schema.org/draft-07/schema#"
+                                }
+                            },
+                            {
+                                "name": "getTinyImage",
+                                "description": "Returns the MCP_TINY_IMAGE",
+                                "inputSchema": {
+                                    "type": "object",
+                                    "properties": {},
+                                    "additionalProperties": false,
+                                    "$schema": "http://json-schema.org/draft-07/schema#"
+                                }
+                            },
+                            {
+                                "name": "annotatedMessage",
+                                "description": "Demonstrates how annotations can be used to provide metadata about content",
+                                "inputSchema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "messageType": {
+                                            "type": "string",
+                                            "enum": [
+                                                "error",
+                                                "success",
+                                                "debug"
+                                            ],
+                                            "description": "Type of message to demonstrate different annotation patterns"
+                                        },
+                                        "includeImage": {
+                                            "type": "boolean",
+                                            "default": false,
+                                            "description": "Whether to include an example image"
+                                        }
+                                    },
+                                    "required": [
+                                        "messageType"
+                                    ],
+                                    "additionalProperties": false,
+                                    "$schema": "http://json-schema.org/draft-07/schema#"
+                                }
+                            },
+                            {
+                                "name": "getResourceReference",
+                                "description": "Returns a resource reference that can be used by MCP clients",
+                                "inputSchema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "resourceId": {
+                                            "type": "number",
+                                            "minimum": 1,
+                                            "maximum": 100,
+                                            "description": "ID of the resource to reference (1-100)"
+                                        }
+                                    },
+                                    "required": [
+                                        "resourceId"
+                                    ],
+                                    "additionalProperties": false,
+                                    "$schema": "http://json-schema.org/draft-07/schema#"
+                                }
+                            }
+                        ]
+                    },
+                    "jsonrpc": "2.0",
+                    "id": 1
+                },
+                "event": "message"
+            },
+            {
+                "start_time": "2025-04-27T23:39:49.121324",
+                "end_time": "2025-04-27T23:39:49.121385",
+                "data": {
+                    "result": {
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "Echo: Hello"
+                            }
+                        ]
+                    },
+                    "jsonrpc": "2.0",
+                    "id": 2
+                },
+                "event": "message"
+            }
+        ]
+    }
+}
