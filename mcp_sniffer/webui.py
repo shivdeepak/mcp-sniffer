@@ -5,6 +5,8 @@ from starlette.applications import Starlette
 from starlette.responses import JSONResponse
 from starlette.staticfiles import StaticFiles
 
+from mcp_sniffer import __version__
+
 host_mapping = {
     "127.0.0.1": "localhost",
     "0.0.0.0": "localhost",
@@ -27,7 +29,7 @@ async def run_webui(connection_manager, config):
                 if config.UPSTREAM_HOST in host_mapping
                 else config.UPSTREAM_HOST,
                 "destination_port": config.UPSTREAM_PORT,
-                "version": "v0.1.0",
+                "version": __version__,
                 "connections": connection_manager.get_connections(),
                 "status": "ok",
             },
