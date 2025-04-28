@@ -1,4 +1,5 @@
 import logging
+import sys
 
 
 class ConnectionLogger(logging.LoggerAdapter):
@@ -11,7 +12,10 @@ class ConnectionLogger(logging.LoggerAdapter):
         extra=None,
         merge_extra=False,
     ):
-        super().__init__(logger, extra, merge_extra)
+        if sys.version_info >= (3, 13):
+            super().__init__(logger, extra=extra, merge_extra=merge_extra)
+        else:
+            super().__init__(logger, extra=extra)
         self.source_ip = source_ip
         self.source_port = source_port
         self.connection_id = connection_id
