@@ -1,0 +1,36 @@
+services:
+  mcp-sniffer:
+    build:
+      context: ../
+      dockerfile: .devcontainer/mcp-sniffer-container/Dockerfile
+    ports:
+      - "8888:8888"
+      - "3002:3002"
+    volumes:
+      - ../:/app
+    networks:
+      - mcp-sniffer-network
+
+  react:
+    build:
+      context: ../
+      dockerfile: .devcontainer/react-container/Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ../frontend:/app/frontend
+    networks:
+      - mcp-sniffer-network
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8000:80"
+    volumes:
+      - ./nginx-container/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - mcp-sniffer-network
+
+networks:
+  mcp-sniffer-network:
+    driver: bridge

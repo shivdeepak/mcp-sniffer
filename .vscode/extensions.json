@@ -5,6 +5,8 @@
         "ms-python.debugpy",
         "fabiospampinato.vscode-highlight",
         "dbaeumer.vscode-eslint",
-        "charliermarsh.ruff"
+        "charliermarsh.ruff",
+        "ms-azuretools.vscode-docker",
+        "ms-vscode-remote.remote-containers"
     ]
 }

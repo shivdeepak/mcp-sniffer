@@ -1,0 +1,9 @@
+{
+    "name": "MCP Sniffer",
+    "dockerComposeFile": [
+        "../docker-compose.yml"
+    ],
+    "service": "mcp-sniffer",
+    "shutdownAction": "none",
+    "workspaceFolder": "/app"
+}
