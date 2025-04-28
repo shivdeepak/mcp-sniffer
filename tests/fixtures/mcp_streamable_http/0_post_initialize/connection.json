@@ -1,0 +1,135 @@
+{
+    "active": false,
+    "created_at": "2025-04-28T00:03:58.258906",
+    "ended_at": "2025-04-28T00:03:58.276193",
+    "source_ip": "127.0.0.1",
+    "source_port": 12345,
+    "destination_ip": "127.0.0.1",
+    "destination_port": 3001,
+    "request": {
+        "method": "POST",
+        "path": "/mcp",
+        "http_version": "1.1",
+        "headers": {
+            "host": "localhost:3002",
+            "connection": "keep-alive",
+            "accept": "application/json, text/event-stream",
+            "content-type": "application/json",
+            "accept-language": "*",
+            "sec-fetch-mode": "cors",
+            "user-agent": "node",
+            "accept-encoding": "gzip, deflate",
+            "content-length": "205"
+        },
+        "raw_body": [
+            "POST /mcp HTTP/1.1\r\n",
+            "host: localhost:3002\r\n",
+            "connection: keep-alive\r\n",
+            "accept: application/json, text/event-stream\r\n",
+            "content-type: application/json\r\n",
+            "accept-language: *\r\n",
+            "sec-fetch-mode: cors\r\n",
+            "user-agent: node\r\n",
+            "accept-encoding: gzip, deflate\r\n",
+            "content-length: 205\r\n",
+            "\r\n",
+            "{\"jsonrpc\":\"2.0\",\"id\":0,\"method\":\"initialize\",\"params\":{\"protocolVersion\":\"2024-11-05\",\"capabilities\":{\"sampling\":{},\"roots\":{\"listChanged\":true}},\"clientInfo\":{\"name\":\"mcp-inspector\",\"version\":\"0.10.2\"}}}"
+        ],
+        "body": {
+            "jsonrpc": "2.0",
+            "id": 0,
+            "method": "initialize",
+            "params": {
+                "protocolVersion": "2024-11-05",
+                "capabilities": {
+                    "sampling": {},
+                    "roots": {
+                        "listChanged": true
+                    }
+                },
+                "clientInfo": {
+                    "name": "mcp-inspector",
+                    "version": "0.10.2"
+                }
+            }
+        }
+    },
+    "response": {
+        "http_version": "1.1",
+        "status_code": 200,
+        "status_message": "OK",
+        "headers": {
+            "x-powered-by": "Express",
+            "content-type": "text/event-stream",
+            "cache-control": "no-cache",
+            "connection": "keep-alive",
+            "mcp-session-id": "ec72ba5f-dfde-4550-bc4d-5b7448bb13a1",
+            "date": "Mon, 28 Apr 2025 07:03:58 GMT",
+            "transfer-encoding": "chunked"
+        },
+        "raw_body": [
+            "HTTP/1.1 200 OK\r\n",
+            "X-Powered-By: Express\r\n",
+            "Content-Type: text/event-stream\r\n",
+            "Cache-Control: no-cache\r\n",
+            "Connection: keep-alive\r\n",
+            "mcp-session-id: ec72ba5f-dfde-4550-bc4d-5b7448bb13a1\r\n",
+            "Date: Mon, 28 Apr 2025 07:03:58 GMT\r\n",
+            "Transfer-Encoding: chunked\r\n",
+            "\r\n",
+            "144\r\n",
+            "event: message\n",
+            "id: 7ec9a746-199b-41ca-82c1-eb39e3e72d83_1745823838274_skpy1tfg\n",
+            "data: {\"result\":{\"protocolVersion\":\"2024-11-05\",\"capabilities\":{\"prompts\":{},\"resources\":{\"subscribe\":true},\"tools\":{},\"logging\":{},\"completions\":{}},\"serverInfo\":{\"name\":\"example-servers/everything\",\"version\":\"1.0.0\"}},\"jsonrpc\":\"2.0\",\"id\":0}\n",
+            "\n",
+            "\r\n",
+            "0\r\n",
+            "\r\n"
+        ],
+        "chunks": [
+            {
+                "start_time": "2025-04-28T00:03:58.275843",
+                "end_time": "2025-04-28T00:03:58.276057",
+                "data": [
+                    "event: message\n",
+                    "id: 7ec9a746-199b-41ca-82c1-eb39e3e72d83_1745823838274_skpy1tfg\n",
+                    "data: {\"result\":{\"protocolVersion\":\"2024-11-05\",\"capabilities\":{\"prompts\":{},\"resources\":{\"subscribe\":true},\"tools\":{},\"logging\":{},\"completions\":{}},\"serverInfo\":{\"name\":\"example-servers/everything\",\"version\":\"1.0.0\"}},\"jsonrpc\":\"2.0\",\"id\":0}\n",
+                    "\n"
+                ]
+            },
+            {
+                "start_time": "2025-04-28T00:03:58.276100",
+                "end_time": "2025-04-28T00:03:58.276121",
+                "data": []
+            }
+        ],
+        "sse_messages": [
+            {
+                "start_time": "2025-04-28T00:03:58.275786",
+                "end_time": "2025-04-28T00:03:58.276030",
+                "data": {
+                    "result": {
+                        "protocolVersion": "2024-11-05",
+                        "capabilities": {
+                            "prompts": {},
+                            "resources": {
+                                "subscribe": true
+                            },
+                            "tools": {},
+                            "logging": {},
+                            "completions": {}
+                        },
+                        "serverInfo": {
+                            "name": "example-servers/everything",
+                            "version": "1.0.0"
+                        }
+                    },
+                    "jsonrpc": "2.0",
+                    "id": 0
+                },
+                "event": "message",
+                "id": "7ec9a746-199b-41ca-82c1-eb39e3e72d83_1745823838274_skpy1tfg"
+            }
+        ]
+    }
+}

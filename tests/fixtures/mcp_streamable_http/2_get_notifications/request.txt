@@ -1,0 +1,10 @@
+GET /mcp HTTP/1.1
+host: localhost:3002
+connection: keep-alive
+mcp-session-id: ec72ba5f-dfde-4550-bc4d-5b7448bb13a1
+Accept: text/event-stream
+accept-language: *
+sec-fetch-mode: cors
+user-agent: node
+accept-encoding: gzip, deflate
+

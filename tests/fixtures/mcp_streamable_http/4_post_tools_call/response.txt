@@ -1,0 +1,17 @@
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: text/event-stream
+Cache-Control: no-cache
+Connection: keep-alive
+mcp-session-id: ec72ba5f-dfde-4550-bc4d-5b7448bb13a1
+Date: Mon, 28 Apr 2025 07:04:08 GMT
+Transfer-Encoding: chunked
+
+ab
+event: message
+id: ea034d31-1c38-4629-bf2a-aeb10ee37df2_1745823848072_mquyutro
+data: {"result":{"content":[{"type":"text","text":"Echo: Hello"}]},"jsonrpc":"2.0","id":2}
+
+
+0
+

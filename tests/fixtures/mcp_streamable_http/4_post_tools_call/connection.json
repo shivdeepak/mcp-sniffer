@@ -1,0 +1,125 @@
+{
+    "active": false,
+    "created_at": "2025-04-28T00:04:08.063874",
+    "ended_at": "2025-04-28T00:04:08.080435",
+    "source_ip": "127.0.0.1",
+    "source_port": 12345,
+    "destination_ip": "127.0.0.1",
+    "destination_port": 3001,
+    "request": {
+        "method": "POST",
+        "path": "/mcp",
+        "http_version": "1.1",
+        "headers": {
+            "host": "localhost:3002",
+            "connection": "keep-alive",
+            "mcp-session-id": "ec72ba5f-dfde-4550-bc4d-5b7448bb13a1",
+            "accept": "application/json, text/event-stream",
+            "content-type": "application/json",
+            "accept-language": "*",
+            "sec-fetch-mode": "cors",
+            "user-agent": "node",
+            "accept-encoding": "gzip, deflate",
+            "content-length": "131"
+        },
+        "raw_body": [
+            "POST /mcp HTTP/1.1\r\n",
+            "host: localhost:3002\r\n",
+            "connection: keep-alive\r\n",
+            "mcp-session-id: ec72ba5f-dfde-4550-bc4d-5b7448bb13a1\r\n",
+            "accept: application/json, text/event-stream\r\n",
+            "content-type: application/json\r\n",
+            "accept-language: *\r\n",
+            "sec-fetch-mode: cors\r\n",
+            "user-agent: node\r\n",
+            "accept-encoding: gzip, deflate\r\n",
+            "content-length: 131\r\n",
+            "\r\n",
+            "{\"jsonrpc\":\"2.0\",\"id\":2,\"method\":\"tools/call\",\"params\":{\"_meta\":{\"progressToken\":2},\"name\":\"echo\",\"arguments\":{\"message\":\"Hello\"}}}"
+        ],
+        "body": {
+            "jsonrpc": "2.0",
+            "id": 2,
+            "method": "tools/call",
+            "params": {
+                "_meta": {
+                    "progressToken": 2
+                },
+                "name": "echo",
+                "arguments": {
+                    "message": "Hello"
+                }
+            }
+        }
+    },
+    "response": {
+        "http_version": "1.1",
+        "status_code": 200,
+        "status_message": "OK",
+        "headers": {
+            "x-powered-by": "Express",
+            "content-type": "text/event-stream",
+            "cache-control": "no-cache",
+            "connection": "keep-alive",
+            "mcp-session-id": "ec72ba5f-dfde-4550-bc4d-5b7448bb13a1",
+            "date": "Mon, 28 Apr 2025 07:04:08 GMT",
+            "transfer-encoding": "chunked"
+        },
+        "raw_body": [
+            "HTTP/1.1 200 OK\r\n",
+            "X-Powered-By: Express\r\n",
+            "Content-Type: text/event-stream\r\n",
+            "Cache-Control: no-cache\r\n",
+            "Connection: keep-alive\r\n",
+            "mcp-session-id: ec72ba5f-dfde-4550-bc4d-5b7448bb13a1\r\n",
+            "Date: Mon, 28 Apr 2025 07:04:08 GMT\r\n",
+            "Transfer-Encoding: chunked\r\n",
+            "\r\n",
+            "ab\r\n",
+            "event: message\n",
+            "id: ea034d31-1c38-4629-bf2a-aeb10ee37df2_1745823848072_mquyutro\n",
+            "data: {\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"Echo: Hello\"}]},\"jsonrpc\":\"2.0\",\"id\":2}\n",
+            "\n",
+            "\r\n",
+            "0\r\n",
+            "\r\n"
+        ],
+        "chunks": [
+            {
+                "start_time": "2025-04-28T00:04:08.078913",
+                "end_time": "2025-04-28T00:04:08.079949",
+                "data": [
+                    "event: message\n",
+                    "id: ea034d31-1c38-4629-bf2a-aeb10ee37df2_1745823848072_mquyutro\n",
+                    "data: {\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"Echo: Hello\"}]},\"jsonrpc\":\"2.0\",\"id\":2}\n",
+                    "\n"
+                ]
+            },
+            {
+                "start_time": "2025-04-28T00:04:08.080079",
+                "end_time": "2025-04-28T00:04:08.080147",
+                "data": []
+            }
+        ],
+        "sse_messages": [
+            {
+                "start_time": "2025-04-28T00:04:08.078637",
+                "end_time": "2025-04-28T00:04:08.079849",
+                "data": {
+                    "result": {
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "Echo: Hello"
+                            }
+                        ]
+                    },
+                    "jsonrpc": "2.0",
+                    "id": 2
+                },
+                "event": "message",
+                "id": "ea034d31-1c38-4629-bf2a-aeb10ee37df2_1745823848072_mquyutro"
+            }
+        ]
+    }
+}

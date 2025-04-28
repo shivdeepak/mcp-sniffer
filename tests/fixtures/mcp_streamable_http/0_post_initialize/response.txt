@@ -1,0 +1,17 @@
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: text/event-stream
+Cache-Control: no-cache
+Connection: keep-alive
+mcp-session-id: ec72ba5f-dfde-4550-bc4d-5b7448bb13a1
+Date: Mon, 28 Apr 2025 07:03:58 GMT
+Transfer-Encoding: chunked
+
+144
+event: message
+id: 7ec9a746-199b-41ca-82c1-eb39e3e72d83_1745823838274_skpy1tfg
+data: {"result":{"protocolVersion":"2024-11-05","capabilities":{"prompts":{},"resources":{"subscribe":true},"tools":{},"logging":{},"completions":{}},"serverInfo":{"name":"example-servers/everything","version":"1.0.0"}},"jsonrpc":"2.0","id":0}
+
+
+0
+

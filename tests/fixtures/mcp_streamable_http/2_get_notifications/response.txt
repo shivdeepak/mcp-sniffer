@@ -1,0 +1,17 @@
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: text/event-stream
+Cache-Control: no-cache, no-transform
+Connection: keep-alive
+mcp-session-id: ec72ba5f-dfde-4550-bc4d-5b7448bb13a1
+Date: Mon, 28 Apr 2025 07:03:58 GMT
+Transfer-Encoding: chunked
+
+b0
+event: message
+id: _GET_stream_1745823850065_5nob0md8
+data: {"method":"notifications/message","params":{"level":"emergency","data":"Emergency-level message"},"jsonrpc":"2.0"}
+
+
+0
+

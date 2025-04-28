@@ -31,6 +31,11 @@ testcases = [
     ["mcp_http_sse", "2_post_notify_initialized"],
     ["mcp_http_sse", "3_post_tools_list"],
     ["mcp_http_sse", "4_tools_call"],
+    ["mcp_streamable_http", "0_post_initialize"],
+    ["mcp_streamable_http", "1_post_notify_initialized"],
+    ["mcp_streamable_http", "2_get_notifications"],
+    ["mcp_streamable_http", "3_post_tools_list"],
+    ["mcp_streamable_http", "4_post_tools_call"],
 ]
 
 

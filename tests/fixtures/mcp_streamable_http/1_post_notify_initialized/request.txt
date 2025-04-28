@@ -1,0 +1,13 @@
+POST /mcp HTTP/1.1
+host: localhost:3002
+connection: keep-alive
+mcp-session-id: ec72ba5f-dfde-4550-bc4d-5b7448bb13a1
+accept: application/json, text/event-stream
+content-type: application/json
+accept-language: *
+sec-fetch-mode: cors
+user-agent: node
+accept-encoding: gzip, deflate
+content-length: 54
+
+{"jsonrpc":"2.0","method":"notifications/initialized"}
