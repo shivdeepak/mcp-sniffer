@@ -55,15 +55,11 @@ options:
 
 ```shell
 mcp-sniffer --listen-port 3002 --upstream-port 3001
-# INFO:     Started server process [32580]
-# INFO:     Waiting for application startup.
-# INFO:     Application startup complete.
-# 2025-04-19 00:25:04 devmachine.local mcp_sniffer.proxy[32580] INFO Listening on ('127.0.0.1', 3002)...
-# INFO:     Uvicorn running on http://127.0.0.1:8888 (Press CTRL+C to quit)
-# INFO:     127.0.0.1:52396 - "GET / HTTP/1.1" 200 OK
-# INFO:     127.0.0.1:52396 - "GET /assets/index-C93YJcsR.css HTTP/1.1" 200 OK
-# INFO:     127.0.0.1:52397 - "GET /assets/index-CwtNIZdB.js HTTP/1.1" 200 OK
-# INFO:     127.0.0.1:52397 - "GET /connections HTTP/1.1" 200 OK
+INFO:     Started server process [6174]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+2025-04-27 19:52:53 devmachine.local mcp_sniffer.proxy[6174] INFO Listening on ('127.0.0.1', 3002)...
+INFO:     Uvicorn running on http://127.0.0.1:8888 (Press CTRL+C to quit)
 ```
 
 ## Web UI

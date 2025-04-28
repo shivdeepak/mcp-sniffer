@@ -1,14 +1,3 @@
-IMAGE_NAME = mcp-sniffer
-
-WEB_UI_HOST ?= 0.0.0.0
-WEB_UI_PORT ?= 8888
-
-LISTEN_HOST ?= 0.0.0.0
-LISTEN_PORT ?= 3002
-
-UPSTREAM_HOST ?= host.docker.internal
-UPSTREAM_PORT ?= 3001
-
 lint:
 	cd frontend && npm run lint
 	poetry run ruff check .
